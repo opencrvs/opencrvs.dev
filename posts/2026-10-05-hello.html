@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>How this site works</title>
+    <meta name="description" content="Drop an HTML file into posts/, push to main, and it shows up here." />
+    <meta name="author" content="Riku Rouvila" />
+    <style>
+      body { max-width: 680px; margin: 0 auto; padding: 48px 16px; font: 17px/1.6 system-ui, sans-serif; background: #fff; color: #222; }
+      @media (prefers-color-scheme: dark) { body { background: #141615; color: #ececea; } a { color: #5cc4a8; } }
+      code { font-size: 0.9em; }
+    </style>
+  </head>
+  <body>
+    <p><a href="./">← opencrvs.dev</a></p>
+    <h1>How this site works</h1>
+    <p>Every HTML file in <code>posts/</code> is published as-is, and the front page lists them newest first.</p>
+    <ol>
+      <li>Add <code>posts/2026-10-05-my-report.html</code>, or a folder <code>posts/my-report/index.html</code> if it has its own assets.</li>
+      <li>Push to <code>main</code>. GitHub Actions rebuilds the listing and deploys.</li>
+    </ol>
+    <p>The listing uses the page's <code>&lt;title&gt;</code>, <code>&lt;meta name="description"&gt;</code> and <code>&lt;meta name="author"&gt;</code>. Add <code>&lt;meta name="unlisted"&gt;</code> to publish a page without listing it.</p>
+  </body>
+</html>
