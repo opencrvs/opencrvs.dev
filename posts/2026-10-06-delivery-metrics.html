@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>opencrvs-core delivery metrics, 2018–2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,600;0,750;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F4F6F8; --surface:#FFFFFF; --ink:#17212B; --muted:#5B6875; --rule:#D9DFE5;
+  --s1:#2E5E8C; --s2:#93B3CF; --s3:#A8473B; --s4:#17212B; --hl:#E8EEF4; --band:rgba(23,33,43,0.06); --s5:#B9C2CB;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#11171D; --surface:#182029; --ink:#E4E9EE; --muted:#97A3AF; --rule:#2B3640;
+    --s1:#79A7D3; --s2:#5A82A9; --s3:#D9806F; --s4:#E4E9EE; --hl:#1F2B37; --band:rgba(228,233,238,0.07); --s5:#4A5663;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#11171D; --surface:#182029; --ink:#E4E9EE; --muted:#97A3AF; --rule:#2B3640;
+  --s1:#79A7D3; --s2:#5A82A9; --s3:#D9806F; --s4:#E4E9EE; --hl:#1F2B37; --band:rgba(228,233,238,0.07); --s5:#4A5663;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Public Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  font-size:1rem;line-height:1.55;font-variant-numeric:tabular-nums;-webkit-text-size-adjust:100%}
+main{max-width:46rem;margin:0 auto;padding:2.5rem 1.25rem 4rem}
+h1{font-size:clamp(1.7rem,4.5vw,2.4rem);line-height:1.15;font-weight:750;letter-spacing:-0.015em;margin:0 0 .75rem}
+h2{font-size:1.3rem;line-height:1.25;font-weight:750;margin:3rem 0 .5rem;padding-top:1.25rem;border-top:2px solid var(--ink)}
+h3{font-size:1rem;font-weight:600;margin:1.75rem 0 .25rem}
+p{margin:.5rem 0 1rem;max-width:40rem}
+.lede{font-size:1.125rem;color:var(--ink)}
+.src{color:var(--muted);font-size:.875rem}
+a{color:var(--s1)}
+figure{margin:1.25rem 0 1.5rem;background:var(--surface);border:1px solid var(--rule);border-radius:6px;padding:1rem 1rem .75rem}
+figcaption{font-size:.875rem;color:var(--muted);margin-top:.5rem}
+figcaption strong{color:var(--ink);font-weight:600;display:block;font-size:.95rem;margin-bottom:.15rem}
+.chart{position:relative;height:250px}
+.chart.tall{height:290px}
+.key{display:flex;flex-wrap:wrap;gap:.25rem 1rem;font-size:.8125rem;color:var(--muted);margin:0 0 .6rem;padding:0;list-style:none}
+.key li{display:flex;align-items:center;gap:.4rem}
+.key i{display:inline-block;width:.85rem;height:.6rem;border-radius:2px}
+.key i.line{height:3px}
+.key i.band{background:var(--band)!important;outline:1px solid var(--rule);height:.75rem}
+.key i.dash{height:0;border-top:2px dashed currentColor;background:none!important}
+ol.findings{padding-left:1.4rem;margin:1rem 0}
+ol.findings li{margin:0 0 .85rem;padding-left:.25rem}
+ol.findings b{font-weight:600}
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:1rem 0 1.5rem;border:1px solid var(--rule);border-radius:6px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:.875rem;min-width:34rem}
+th,td{text-align:left;padding:.55rem .75rem;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font-weight:600;background:var(--hl)}
+td.n,th.n{text-align:right}
+td.n{white-space:nowrap}
+table.fit{min-width:0}
+table.fit th,table.fit td{padding:.5rem .45rem}
+tr:last-child td{border-bottom:0}
+.status{white-space:nowrap;font-weight:600}
+.ok{color:var(--s1)} .gap{color:var(--s3)}
+ul.plain{padding-left:1.2rem} ul.plain li{margin:.35rem 0}
+footer{margin-top:3rem;color:var(--muted);font-size:.8125rem;border-top:1px solid var(--rule);padding-top:1rem}
+:focus-visible{outline:2px solid var(--s1);outline-offset:2px}
+@media (max-width:480px){main{padding:1.5rem 1rem 3rem}.chart{height:220px}.chart.tall{height:260px}figure{padding:.75rem .6rem .6rem}}
+</style>
+</head>
+<body>
+<main>
+<h1>Fixes land faster than ever. Shipping them takes longer.</h1>
+<p class="lede">An analysis of every issue (6,485) and pull request (7,327) in opencrvs/opencrvs-core from May 2018 to 4 October 2026, including project board status history, reviews and release tags. Most charts cover 2022 onwards; board history starts in October 2023.</p>
+<p>Most of the change lines up with the Events V2 rewrite. On the time charts, the shaded area is the period before V2 work began in November 2024, and dashed lines mark 1.9 (V2 ships) and 2.0 (pre-V2 services removed).</p>
+
+<figure>
+  <figcaption><strong>Issues in each board stage, weekly</strong></figcaption>
+  <ul class="key"><li><i style="background:var(--s3)" class="line"></i>Completed, not yet closed</li><li><i style="background:var(--s2)" class="line"></i>Waiting for release or in QA</li><li><i style="background:var(--s1)" class="line"></i>In development</li><li><i style="background:var(--s4)" class="line"></i>In code review</li></ul>
+  <div class="chart tall"><canvas id="cQueue" aria-label="Line chart of weekly issue counts in development, code review, release or QA, and completed but still open, January 2025 to October 2026"></canvas></div>
+  <figcaption>Open issues by their latest project board status at the end of each week. Work in development and review stays between 15 and 60 items; finished work waiting to ship grew to 315 before the 2.1 release closed about 170 of them. Dashed lines mark the 1.9, 2.0 and 2.1 releases.</figcaption>
+</figure>
+
+<h2>Findings</h2>
+<ol class="findings">
+<li><b>Events V2 is where the change starts.</b> Most improvements begin in late 2024, when V2 work began, not when 1.9 shipped. From January 2025 to April 2026, PRs to V2 code got a first review in a median of 2 hours against 20 for older code, and merged in about half the time at the same size. The cost shows in 1.9 and 2.0, which had the most bugs and regressions.</li>
+<li><b>Work gets built quickly.</b> On the project board, the median time from In Development to Completed was 5–10 days through 2025–26, down from 18–26 days in the first three quarters of 2024. Development and code review alone take a median of 1–4 days in 2026.</li>
+<li><b>Reviews are fast.</b> The median wait for the first human review fell from 14–25 hours in 2024 to 2–3 hours in 2026, and 85% of PRs got one within 3 days in Q2 and Q3 2026. PRs are bigger than in 2023 (median 80–170 changed lines in 2025–26, against 30–70 in 2023), and size is the clearest predictor of waiting: PRs under 50 lines merge in a median of 4 hours, PRs over 1,000 lines in 5 days.</li>
+<li><b>Finished work waits to ship.</b> Issues marked Completed waited a median of 21–49 days before being closed in 2026, against 1–16 days in 2024. Issues are closed when a release ships, so this is release wait. The queue of Completed-but-open issues grew from about 50 at the start of 2025 to 315 in September 2026; 199 are still waiting after 2.1.</li>
+<li><b>The open backlog has tripled.</b> 300 open issues in early 2022, 977 today. Since late 2024 more issues were opened than closed in most quarters. Median age of an open issue is 270 days; 68% are older than six months.</li>
+<li><b>Closure counts are unreliable.</b> 44% of all closures (2,412 of 5,505) happened in batches of eight or more within minutes. Most are release or QA batches, but 749 were clean-up sweeps of year-old issues, and 748 of those were marked "completed". "Not planned" has been used 62 times in the repo's history.</li>
+<li><b>Quality is improving.</b> Regressions per 100 merged PRs went from 43 (1.9) to 31 (2.0) to 17 (2.1, still early). The share of completed items sent back from QA fell from 18–22% in 2024 to 5–18% in 2025–26. Fewer PRs get "changes requested" (1–6% in 2025–26, 9–25% in 2022–23); that could mean better PRs or lighter review, so watch it next to regressions.</li>
+<li><b>2.1, the first release on V2 alone, had far fewer bugs than recent releases.</b> 38 bugs were raised per 100 merged PRs during the 2.1 cycle, against 88 for 1.9 and 98 for 2.0, even though 2.1 had the best issue type coverage (78%). 1.9 needed 88 bug fixes across its patch releases after shipping; 2.0 has needed 11 so far.</li>
+<li><b>Most of each release's scope arrives after the cycle starts.</b> 86% of the issues in the 2.0 milestone and 70% of those in 2.1 were created during the release cycle. About half of the added issues are bugs, the rest new features and tasks. Issues moved between milestones aren't counted yet, so the real number of scope changes is higher.</li>
+<li><b>AI-assisted work is now a fifth of PRs.</b> 17–21% of merged PRs from July to September 2026 have an AI co-author, up from 4–6% in March to June and almost none before. Q3 2026 also had 369 merged PRs from 16 authors, the highest per-author rate since 2022, and the share of closed PRs that were merged fell from about 88% to about 80%. PR counts are not comparable across these periods without that context.</li>
+</ol>
+
+<h2>Before and after Events V2</h2>
+<p>Events V2 is a rewrite of how OpenCRVS defines and processes life events. Work on it started in November 2024, when the events and toolkit packages were created. It shipped alongside the old system in 1.9 (November 2025), and the old backend services (gateway, workflow, search, metrics, user-mgnt, config) were removed during the 2.0 cycle in April and May 2026.</p>
+<p>The rewrite had a cost: 1.9 and 2.0 had the highest bug and regression rates measured, 1.9 needed about 20 patch releases, and the backlog doubled during 2025. It also changed how fast work moves. Changes to V2 code are reviewed within hours instead of a day, and merge in about half the time at the same size. 2.1, the first release on V2 alone, had the lowest bug rate of the five releases measured.</p>
+
+<figure>
+  <figcaption><strong>What merged PRs changed, per quarter</strong></figcaption>
+  <ul class="key"><li><i style="background:var(--s3)"></i>Code that predates V2</li><li><i style="background:var(--s1)"></i>Events V2 code</li><li><i style="background:var(--s2)"></i>Both</li><li><i style="background:var(--s5)"></i>Other: tests, CI, Helm charts, shared UI</li></ul>
+  <div class="chart tall"><canvas id="cArea" aria-label="Stacked bar chart of merged PRs per quarter by the code they changed: pre-V2 code, Events V2 code, both, or other"></canvas></div>
+  <figcaption>A PR counts as V2 or pre-V2 when at least 80% of its changed code files are in that area. Events V2 code is packages/events, packages/toolkit, the client's v2-events folder, and the event, conditional and field configuration in commons. Docs, lockfiles, CI config and translations are ignored. After 2.0, most "both" PRs touch V2 and the parts of the client shared with the old UI.</figcaption>
+</figure>
+
+<figure>
+  <figcaption><strong>Median hours to merge by PR size, January 2025 to April 2026</strong></figcaption>
+  <ul class="key"><li><i style="background:var(--s1)"></i>Events V2 code</li><li><i style="background:var(--s3)"></i>Code that predates V2</li></ul>
+  <div class="chart"><canvas id="cV2size" aria-label="Grouped bar chart of median hours to merge by PR size for Events V2 code and pre-V2 code"></canvas></div>
+  <figcaption>Both codebases were in active use in this period. Only 15 PRs over 1,000 lines touched pre-V2 code, so that pair of bars is the least reliable.</figcaption>
+</figure>
+
+<div class="scroll"><table class="fit">
+<thead><tr><th>January 2025 to April 2026</th><th class="n">Events V2 code</th><th class="n">Code that predates V2</th></tr></thead>
+<tbody id="v2Body"></tbody>
+</table></div>
+
+<h3>What to keep in mind</h3>
+<ul class="plain">
+<li>Only 8 people made at least five PRs in each codebase. For them, V2 PRs got a first review after 4 hours instead of 20, but V2 PRs merged faster for only 4 of the 8. Part of the difference is who worked where, and where the team's attention was.</li>
+<li>Board tracking widened in 2025, which pulls cycle-time medians down. The PR numbers in this section aren't affected by that.</li>
+<li>AI co-authorship rose from July 2026, at the same time as the 2.1 improvements.</li>
+<li>For KR 2.1, use Q3 2026 onwards as the baseline. Earlier numbers come from a different codebase and process.</li>
+</ul>
+
+<h2>Cycle time from the project board</h2>
+<figure>
+  <figcaption><strong>In Development to Completed</strong></figcaption>
+  <ul class="key"><li><i style="background:var(--s1)" class="line"></i>Median days</li><li><i style="color:var(--s2)" class="dash"></i>85th percentile days</li><li><i style="background:var(--s4)" class="line"></i>Median days in development and review</li></ul>
+  <div class="chart tall"><canvas id="cCycle" aria-label="Line chart of board cycle time per quarter, median and 85th percentile, with median development and review time"></canvas></div>
+  <figcaption>Grouped by the quarter the issue reached Completed. Covers the 1,498 issues that went through In Development or In Code Review before Completed (48–202 per quarter). Development and review means In Development until the first post-review status such as Ready for release or Ready for QA.</figcaption>
+</figure>
+
+<figure>
+  <figcaption><strong>Completed to closed (release wait)</strong></figcaption>
+  <div class="chart"><canvas id="cWait" aria-label="Bar chart of median days between board Completed and issue closed, per quarter"></canvas></div>
+  <figcaption>Median days, grouped by the quarter the issue closed.</figcaption>
+</figure>
+
+<h2>Issue flow and backlog</h2>
+<figure>
+  <figcaption><strong>Issues opened and closed per quarter</strong></figcaption>
+  <ul class="key"><li><i style="background:var(--s1)"></i>Closed individually</li><li><i style="background:var(--s2)"></i>Closed in a release or QA batch</li><li><i style="background:var(--s3)"></i>Closed in a clean-up sweep</li><li><i style="background:var(--s4)" class="line"></i>Opened</li></ul>
+  <div class="chart tall"><canvas id="cFlow" aria-label="Stacked bar chart of issues closed per quarter by closure type, with a line for issues opened"></canvas></div>
+  <figcaption>A batch is eight or more closures with less than five minutes between each. Batches whose issues mostly had no milestone and a median age over 180 days count as clean-up sweeps. All other batches count as release or QA batches.</figcaption>
+</figure>
+
+<figure>
+  <figcaption><strong>Open issues at end of quarter</strong></figcaption>
+  <div class="chart"><canvas id="cBacklog" aria-label="Line chart of open issue count at end of each quarter"></canvas></div>
+  <figcaption>Reconstructed from open and close dates. Today's count (977) is lower than end of Q3 because about 170 issues were closed with the 2.1 release on 2 October.</figcaption>
+</figure>
+
+<figure>
+  <figcaption><strong>Age of the 977 open issues</strong></figcaption>
+  <div class="chart"><canvas id="cAge" aria-label="Bar chart of open issues grouped by age"></canvas></div>
+  <figcaption>333 open issues have no issue type set; 287 are bugs.</figcaption>
+</figure>
+
+<h2>Pull requests</h2>
+<figure>
+  <figcaption><strong>Time from PR opened to merged</strong></figcaption>
+  <ul class="key"><li><i style="background:var(--s1)" class="line"></i>Median days</li><li><i style="color:var(--s2)" class="dash"></i>85th percentile days</li></ul>
+  <div class="chart"><canvas id="cTTM" aria-label="Line chart of median and 85th percentile PR time to merge per quarter"></canvas></div>
+  <figcaption>Human-authored PRs only; Renovate, Dependabot, GitHub Actions and ocrvs-bot are excluded. Grouped by merge quarter.</figcaption>
+</figure>
+
+<figure>
+  <figcaption><strong>Wait for first human review</strong></figcaption>
+  <ul class="key"><li><i style="background:var(--s1)" class="line"></i>Median hours</li><li><i style="color:var(--s2)" class="dash"></i>85th percentile hours</li></ul>
+  <div class="chart"><canvas id="cReview" aria-label="Line chart of median and 85th percentile hours to first human review per quarter"></canvas></div>
+  <figcaption>From the PR being opened, or marked ready for review if it started as a draft, to the first review by someone other than the author. Review bots (Copilot, Greptile, Cursor, CodeRabbit) are excluded; they reviewed about 2% of 2026 PRs.</figcaption>
+</figure>
+
+<figure>
+  <figcaption><strong>Merged PRs with an AI co-author</strong></figcaption>
+  <div class="chart"><canvas id="cAI" aria-label="Bar chart of the monthly share of merged PRs with an AI co-author, January 2025 to September 2026"></canvas></div>
+  <figcaption>Share of merged human-authored PRs where at least one commit has a Co-authored-by trailer from an AI tool (Claude, Copilot, Greptile). 98% of merged PRs were found in git history. Tools that don't add a trailer, such as inline completions or chat, aren't counted, so this is a lower bound. 15 more PRs were opened by AI agent accounts since October 2025 and are excluded with other bots.</figcaption>
+</figure>
+
+<h3>PR size and waiting, 2025–26</h3>
+<div class="scroll"><table class="fit">
+<thead><tr><th>Changed lines</th><th class="n">Merged PRs</th><th class="n">Median hours to merge</th><th class="n">Median hours to first review</th></tr></thead>
+<tbody id="sizeBody"></tbody>
+</table></div>
+
+<figure>
+  <figcaption><strong>Merged PRs per quarter and active authors</strong></figcaption>
+  <ul class="key"><li><i style="background:var(--s2)"></i>Merged PRs</li><li><i style="background:var(--s4)" class="line"></i>Merged PRs per author (right axis)</li></ul>
+  <div class="chart tall"><canvas id="cPR" aria-label="Bar chart of merged PRs per quarter with a line for PRs per active author"></canvas></div>
+  <figcaption>Active author means anyone with at least one merged PR that quarter: 9 to 20 people per quarter, 66 over the repo's life.</figcaption>
+</figure>
+
+<h2>Releases and quality</h2>
+<div class="scroll"><table>
+<thead><tr><th>Minor release</th><th class="n">Days since previous minor</th><th class="n">Merged PRs in cycle</th><th class="n">Patch releases</th><th class="n">Regressions</th><th class="n">Per 100 PRs</th></tr></thead>
+<tbody id="relBody"></tbody>
+</table></div>
+<p class="src">Regressions are issues labelled "1.9 regression", "2.0 regression" or "2.1 regression"; the label did not exist before 1.9. Tagged releases per quarter went from 2–4 in 2024 to 5–8 in 2025–26, mostly 1.9.x patches.</p>
+<p class="src">Share of completed board items that were moved back from a QA status to Ready to build, In Development or Backlog: <span id="bounce"></span>. Reopened issues are rare, 1–2% of issues created in 2025–26.</p>
+
+<h3>Bugs per release</h3>
+<div class="scroll"><table class="fit">
+<thead><tr><th>Release</th><th>Codebase</th><th class="n">Bugs raised during cycle</th><th class="n">Per 100 merged PRs</th><th class="n">Bugs fixed in patch releases</th><th class="n">Issues with a type</th></tr></thead>
+<tbody id="bugBody"></tbody>
+</table></div>
+<p class="src">Bugs are issues with issue type Bug. The cycle runs from the previous minor release to this one, and includes bugs against any version. Bugs fixed in patch releases are bugs in milestones such as 1.9.1 or 2.0.3. Untyped issues aren't counted, so earlier releases are undercounted more; the last column shows how many issues created in the cycle had any type.</p>
+
+<h2>Release scope changes</h2>
+<div class="scroll"><table class="fit">
+<thead><tr><th>Release</th><th class="n">Issues in milestone</th><th class="n">Planned before cycle</th><th class="n">Bugs added</th><th class="n">Other added</th><th class="n">Share added</th></tr></thead>
+<tbody id="scopeBody"></tbody>
+</table></div>
+<p class="src">Counts issues in each release milestone (such as 2.0 or 1.9.0, not patch milestones). Planned before cycle means the issue was created before the previous minor release shipped. Added means it was created after that and before this release shipped. This undercounts scope changes: existing issues moved into the release, and issues moved out to a later release, need milestone change history, which wasn't fetched.</p>
+
+<h2>Proposed sprint metrics for KR 2.1</h2>
+<p>None of these need story points, and all of them can be computed from GitHub every sprint with the data used here. Report each as a rolling median over the last three sprints, because single-sprint numbers swing a lot. Use Q3 2026 onwards as the baseline, since earlier numbers come from a different codebase and process.</p>
+<div class="scroll"><table>
+<thead><tr><th>Metric</th><th>What it tells you</th></tr></thead>
+<tbody>
+<tr><td>Cycle time: In Development to Completed, median and 85th percentile</td><td>How long building a change takes once someone starts. The 85th percentile shows stuck work.</td></tr>
+<tr><td>Work in progress: issues in In Development and In Code Review</td><td>Whether the team is starting more than it finishes. Rising WIP usually comes before rising cycle time.</td></tr>
+<tr><td>Time to first review, median and 85th percentile</td><td>Whether PRs wait for attention.</td></tr>
+<tr><td>Release wait: Completed to closed, and the number of Completed-but-open issues</td><td>How long finished work waits before anyone can use it. Currently the largest part of lead time.</td></tr>
+<tr><td>Net flow: issues opened minus issues closed, excluding sweeps</td><td>Whether the backlog is growing.</td></tr>
+<tr><td>Backlog age: share of open issues older than six months</td><td>Whether the backlog is still a usable plan.</td></tr>
+<tr><td>Quality: bugs raised and regressions per 100 merged PRs per release, bugs fixed in patches, and QA bounce-back rate</td><td>Whether speed is coming at the cost of defects, and how many escape into production.</td></tr>
+<tr><td>Scope change: issues added to the release milestone after the cycle starts, and issues moved out</td><td>How stable the release plan is. Bugs found in QA and new features are worth tracking separately.</td></tr>
+<tr><td>Context only: merged PRs per author, median PR size, share of PRs with an AI co-author</td><td>Helps explain changes in the others. Not targets; all of them shift with working habits and tools.</td></tr>
+</tbody>
+</table></div>
+
+<h3>Changes that would make the numbers trustworthy</h3>
+<ul class="plain">
+<li>Move every issue through In Development on the board. Only about half of board issues do today, so cycle time covers that half.</li>
+<li>Close stale issues as "Not planned" instead of "Completed", so sweeps stop counting as delivered work.</li>
+<li>Set an issue type on every issue, so bug counts are complete. 22% of issues created in Q3 2026 and 333 open issues have none.</li>
+<li>Link PRs to issues through the Development sidebar or "Closes #NNNN". About 37% of issues closed in 2025–26 are linked.</li>
+</ul>
+
+<h3>Metrics to avoid</h3>
+<ul class="plain">
+<li>Raw issue lead time (opened to closed) as an engineering speed measure. It is mostly release cadence and clean-up timing.</li>
+<li>Total issues closed. One sweep can close 170 issues in an afternoon.</li>
+</ul>
+
+<h2>What this data can't show</h2>
+<ul class="plain">
+<li>Which project board a status change came from. The token can't read organisation projects, so status changes from several boards are mixed together. Most transitions follow one workflow (Backlog, Ready to build, In Development, In Code Review, Ready for release, Ready for QA, Completed).</li>
+<li>Who closed about 1,300 issues since 2024. Their close events aren't visible to this token, most likely because an app closed them.</li>
+<li>Effort or size of issues, work outside opencrvs-core (country config, farajaland, docs, infrastructure), and work before 2020, when only 79 issues were created here.</li>
+</ul>
+
+<footer>
+Method: all issues and PRs fetched on 4 October 2026 through the GitHub search and GraphQL APIs, including project board status changes, close events, reviews and PR size. Release dates come from git tags. AI co-authorship comes from commit trailers on all branches. Bugs and release scope come from issue types and current milestones. PRs are classified as Events V2 or pre-V2 code from the files each one changed in git. AI co-authorship comes from commit trailers on develop, so it is a lower bound. Bot accounts are excluded from PR metrics. Percentiles are computed per quarter on raw durations.
+</footer>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js"></script>
+<script>
+const D = {"quarters": ["2022Q1", "2022Q2", "2022Q3", "2022Q4", "2023Q1", "2023Q2", "2023Q3", "2023Q4", "2024Q1", "2024Q2", "2024Q3", "2024Q4", "2025Q1", "2025Q2", "2025Q3", "2025Q4", "2026Q1", "2026Q2", "2026Q3"], "opened": [199, 442, 227, 211, 222, 328, 169, 238, 120, 204, 130, 286, 462, 380, 332, 574, 468, 483, 380], "closed_single": [83, 349, 136, 144, 140, 159, 134, 133, 83, 106, 99, 142, 184, 108, 91, 107, 199, 291, 153], "closed_batch": [0, 196, 12, 0, 20, 41, 22, 31, 10, 0, 0, 0, 18, 200, 213, 217, 161, 224, 122], "closed_sweep": [13, 34, 0, 0, 0, 0, 28, 149, 12, 0, 0, 68, 0, 12, 0, 20, 117, 123, 0], "backlog": [300, 163, 242, 309, 371, 499, 484, 409, 424, 522, 553, 629, 889, 949, 977, 1207, 1198, 1043, 1148], "prs_merged": [182, 351, 136, 238, 204, 272, 174, 101, 101, 175, 123, 193, 294, 243, 298, 184, 199, 283, 369], "authors": [10, 11, 13, 16, 17, 14, 13, 9, 10, 14, 13, 20, 18, 18, 18, 15, 16, 17, 16], "pr_per_author": [18.2, 31.9, 10.5, 14.9, 12.0, 19.4, 13.4, 11.2, 10.1, 12.5, 9.5, 9.7, 16.3, 13.5, 16.6, 12.3, 12.4, 16.6, 23.1], "ttm_med_h": [116.5, 13.3, 74.1, 92.5, 46.0, 42.1, 66.4, 46.3, 118.0, 65.0, 46.0, 49.6, 28.2, 23.2, 25.0, 28.8, 26.6, 20.7, 18.3], "ttm_p85_h": [512.1, 94.8, 343.2, 331.8, 284.6, 190.1, 282.9, 363.4, 667.9, 310.7, 310.2, 333.8, 189.1, 157.3, 149.9, 163.4, 241.2, 157.4, 118.1], "merge_rate": [0.86, 0.92, 0.84, 0.88, 0.89, 0.9, 0.94, 0.83, 0.86, 0.89, 0.88, 0.81, 0.86, 0.75, 0.82, 0.79, 0.8, 0.8, 0.83], "lead_med_d": [40.9, 29.1, 47.7, 47.4, 46.8, 27.0, 33.3, 67.5, 66.9, 58.9, 38.9, 33.7, 19.4, 45.1, 40.4, 42.2, 87.3, 63.5, 60.8], "lead_p85_d": [580.6, 132.5, 175.9, 130.9, 133.6, 62.6, 126.3, 317.3, 425.5, 234.8, 133.7, 391.2, 76.9, 182.3, 138.6, 310.7, 268.8, 380.4, 384.2], "fix_med_d": [47.2, 10.0, 29.9, 38.4, 12.3, 11.0, 19.1, 44.0, 21.1, 20.4, 32.7, 78.7, 22.0, 13.0, 14.0, 11.2, 19.1, 11.0, 11.8], "fix_n": [40, 156, 53, 22, 21, 22, 16, 8, 15, 34, 28, 33, 49, 118, 125, 77, 86, 134, 147], "wait_med_d": [27.2, 6.6, 12.9, 5.1, 42.0, 11.1, 18.4, 238.3, 9.8, 9.2, 10.1, 13.9, 6.1, 20.0, 20.7, 37.0, 54.4, 35.1, 24.0], "age_labels": ["< 1 mo", "1\u20133 mo", "3\u20136 mo", "6\u201312 mo", "1\u20132 yr", "> 2 yr"], "age_counts": [59, 125, 128, 372, 180, 113], "open_total": 977, "open_age_med": 270, "open_types": {"No type": 333, "Bug": 287, "Feature": 111, "Task": 109, "Configuration": 46, "DevOps": 43, "Improvement": 38, "Deprecated EPIC: Functional": 7, "Deprecated EPIC: Technical": 3}, "regressions": {"1.9": 147, "2.0": 177, "2.1": 65}, "releases": [{"minor": "1.1", "days_since_prev": 101, "prs_in_cycle": 188, "patches": 2, "regressions": "", "reg_per_100pr": ""}, {"minor": "1.2", "days_since_prev": 121, "prs_in_cycle": 296, "patches": 1, "regressions": "", "reg_per_100pr": ""}, {"minor": "1.3", "days_since_prev": 252, "prs_in_cycle": 621, "patches": 5, "regressions": "", "reg_per_100pr": ""}, {"minor": "1.4", "days_since_prev": 113, "prs_in_cycle": 111, "patches": 1, "regressions": "", "reg_per_100pr": ""}, {"minor": "1.5", "days_since_prev": 171, "prs_in_cycle": 294, "patches": 1, "regressions": "", "reg_per_100pr": ""}, {"minor": "1.6", "days_since_prev": 131, "prs_in_cycle": 197, "patches": 4, "regressions": "", "reg_per_100pr": ""}, {"minor": "1.7", "days_since_prev": 145, "prs_in_cycle": 425, "patches": 4, "regressions": "", "reg_per_100pr": ""}, {"minor": "1.8", "days_since_prev": 89, "prs_in_cycle": 241, "patches": 3, "regressions": "", "reg_per_100pr": ""}, {"minor": "1.9", "days_since_prev": 112, "prs_in_cycle": 341, "patches": 19, "regressions": 147.0, "reg_per_100pr": 43.1}, {"minor": "2.0", "days_since_prev": 232, "prs_in_cycle": 571, "patches": 4, "regressions": 177.0, "reg_per_100pr": 31.0}, {"minor": "2.1", "days_since_prev": 97, "prs_in_cycle": 377, "patches": 0, "regressions": 65.0, "reg_per_100pr": 17.2}], "tags_per_q": [0, 2, 1, 2, 1, 1, 0, 2, 4, 2, 2, 3, 0, 5, 5, 5, 8, 5, 8]};
+const B = {"bq": ["Q1 24", "Q2 24", "Q3 24", "Q4 24", "Q1 25", "Q2 25", "Q3 25", "Q4 25", "Q1 26", "Q2 26", "Q3 26"], "cycle_med": [26.5, 18.1, 24.7, 8.4, 10.0, 9.6, 7.1, 8.0, 8.9, 10.0, 5.0], "cycle_p85": [60.9, 43.7, 59.1, 106.8, 30.9, 41.9, 21.1, 20.1, 42.9, 34.0, 28.0], "dev_med": [12.0, 5.1, 12.5, 8.2, 6.9, 4.0, 2.9, 2.0, 4.0, 1.1, 1.9], "after_med": [5.8, 8.5, 6.6, 2.1, 2.9, 6.1, 2.9, 5.1, 3.0, 6.1, 1.7], "cycle_n": [48, 63, 71, 60, 202, 168, 151, 197, 175, 187, 166], "done_close_med": [2.5, 16.1, 6.1, 0.6, 2.1, 14.0, 15.0, 15.0, 48.9, 21.2, 24.4], "qa_bounce": [18.8, 17.5, 19.7, 21.7, 11.9, 8.9, 14.6, 10.2, 18.3, 11.8, 5.4], "wk": ["05 Jan 25", "12 Jan 25", "19 Jan 25", "26 Jan 25", "02 Feb 25", "09 Feb 25", "16 Feb 25", "23 Feb 25", "02 Mar 25", "09 Mar 25", "16 Mar 25", "23 Mar 25", "30 Mar 25", "06 Apr 25", "13 Apr 25", "20 Apr 25", "27 Apr 25", "04 May 25", "11 May 25", "18 May 25", "25 May 25", "01 Jun 25", "08 Jun 25", "15 Jun 25", "22 Jun 25", "29 Jun 25", "06 Jul 25", "13 Jul 25", "20 Jul 25", "27 Jul 25", "03 Aug 25", "10 Aug 25", "17 Aug 25", "24 Aug 25", "31 Aug 25", "07 Sep 25", "14 Sep 25", "21 Sep 25", "28 Sep 25", "05 Oct 25", "12 Oct 25", "19 Oct 25", "26 Oct 25", "02 Nov 25", "09 Nov 25", "16 Nov 25", "23 Nov 25", "30 Nov 25", "07 Dec 25", "14 Dec 25", "21 Dec 25", "28 Dec 25", "04 Jan 26", "11 Jan 26", "18 Jan 26", "25 Jan 26", "01 Feb 26", "08 Feb 26", "15 Feb 26", "22 Feb 26", "01 Mar 26", "08 Mar 26", "15 Mar 26", "22 Mar 26", "29 Mar 26", "05 Apr 26", "12 Apr 26", "19 Apr 26", "26 Apr 26", "03 May 26", "10 May 26", "17 May 26", "24 May 26", "31 May 26", "07 Jun 26", "14 Jun 26", "21 Jun 26", "28 Jun 26", "05 Jul 26", "12 Jul 26", "19 Jul 26", "26 Jul 26", "02 Aug 26", "09 Aug 26", "16 Aug 26", "23 Aug 26", "30 Aug 26", "06 Sep 26", "13 Sep 26", "20 Sep 26", "27 Sep 26", "04 Oct 26"], "wk_dev": [19, 20, 22, 26, 23, 22, 21, 22, 23, 20, 24, 26, 22, 22, 25, 29, 27, 27, 27, 31, 28, 25, 29, 32, 38, 31, 30, 28, 28, 29, 28, 31, 35, 32, 39, 35, 39, 39, 42, 42, 44, 46, 44, 46, 38, 37, 46, 42, 45, 45, 46, 47, 47, 48, 55, 59, 56, 57, 59, 55, 55, 56, 57, 55, 50, 51, 57, 57, 51, 52, 49, 37, 37, 32, 28, 28, 27, 28, 22, 21, 24, 25, 27, 25, 30, 28, 30, 29, 33, 29, 28, 24], "wk_review": [15, 13, 15, 12, 16, 24, 43, 40, 31, 27, 19, 22, 19, 20, 23, 33, 18, 19, 22, 27, 24, 22, 24, 26, 28, 28, 31, 27, 24, 22, 19, 18, 25, 23, 23, 21, 22, 18, 21, 23, 24, 27, 31, 37, 14, 19, 25, 30, 24, 30, 36, 35, 38, 37, 30, 37, 28, 31, 25, 29, 32, 25, 32, 27, 43, 44, 39, 48, 52, 48, 46, 54, 47, 47, 44, 43, 43, 39, 40, 29, 31, 34, 36, 36, 30, 32, 31, 32, 30, 35, 35, 26], "wk_post": [17, 16, 21, 18, 19, 26, 32, 40, 38, 32, 35, 38, 58, 45, 49, 42, 56, 48, 49, 48, 47, 46, 49, 55, 47, 59, 47, 47, 45, 53, 49, 52, 49, 44, 53, 54, 48, 49, 60, 67, 92, 102, 82, 82, 49, 61, 64, 65, 57, 46, 69, 63, 63, 75, 82, 79, 74, 76, 83, 77, 80, 80, 79, 87, 95, 98, 105, 104, 130, 148, 120, 131, 139, 151, 177, 152, 136, 132, 96, 71, 69, 75, 76, 67, 79, 76, 81, 89, 93, 75, 75, 67], "wk_done_open": [50, 49, 43, 44, 46, 46, 48, 55, 78, 99, 111, 121, 128, 143, 146, 153, 171, 126, 100, 106, 120, 119, 107, 111, 116, 118, 142, 153, 158, 119, 92, 108, 93, 84, 94, 99, 100, 110, 96, 96, 96, 116, 160, 170, 74, 83, 93, 121, 134, 152, 155, 160, 161, 176, 198, 211, 244, 249, 277, 266, 265, 189, 176, 182, 174, 174, 192, 200, 185, 188, 180, 182, 185, 185, 184, 214, 232, 248, 212, 194, 204, 209, 213, 229, 232, 245, 253, 254, 286, 315, 312, 199], "ttfr_med_h": [69.8, 5.4, 41.5, 36.8, 22.3, 19.9, 21.6, 3.7, 25.4, 20.8, 14.2, 14.3, 12.8, 1.1, 1.5, 6.9, 3.1, 2.3, 2.2], "ttfr_p85_h": [466.8, 64.7, 202.7, 162.6, 134.5, 136.4, 144.1, 115.7, 335.8, 141.1, 152.1, 155.9, 125.1, 64.3, 41.1, 51.8, 93.6, 64.0, 62.4], "size_med": [127.5, 41.0, 73.0, 97.0, 67.5, 49.5, 30.5, 61.0, 161.0, 28.0, 55.0, 158.0, 83.0, 99.0, 110.5, 116.0, 101.0, 169.0, 127.0], "chg_req": [13.7, 12.3, 13.2, 25.2, 17.6, 10.7, 9.2, 10.9, 15.8, 14.9, 8.1, 11.9, 4.4, 4.9, 4.4, 6.1, 5.7, 1.1, 3.3], "no_review": [36.3, 31.3, 19.1, 23.5, 11.8, 22.1, 14.4, 16.8, 15.8, 16.0, 6.5, 15.0, 11.6, 6.2, 5.7, 10.6, 4.1, 7.1, 3.5], "size_table": [["\u2264 50", 677, 4.1, 0.6], ["51\u2013200", 492, 22.1, 2.1], ["201\u2013500", 292, 43.7, 15.8], ["501\u20131,000", 177, 80.2, 18.0], ["> 1,000", 233, 119.0, 24.6]], "rel_bugs": [{"rel": "1.7", "days": 146, "prs": 425, "typed": 42, "bugs_cycle": 178, "bugs_per100": 41.9, "regressions": 0, "patch_bugs": 15, "n_patches": 4, "scope_total": 93, "scope_initial": 38, "added": 55, "added_bug": 39, "added_other": 16, "added_pct": 59, "open_after": 0}, {"rel": "1.8", "days": 89, "prs": 243, "typed": 52, "bugs_cycle": 133, "bugs_per100": 54.7, "regressions": 0, "patch_bugs": 6, "n_patches": 3, "scope_total": 70, "scope_initial": 40, "added": 30, "added_bug": 24, "added_other": 6, "added_pct": 43, "open_after": 0}, {"rel": "1.9", "days": 112, "prs": 336, "typed": 70, "bugs_cycle": 297, "bugs_per100": 88.4, "regressions": 147, "patch_bugs": 88, "n_patches": 20, "scope_total": 118, "scope_initial": 64, "added": 54, "added_bug": 27, "added_other": 27, "added_pct": 46, "open_after": 2}, {"rel": "2.0", "days": 233, "prs": 561, "typed": 62, "bugs_cycle": 550, "bugs_per100": 98.0, "regressions": 177, "patch_bugs": 11, "n_patches": 5, "scope_total": 628, "scope_initial": 86, "added": 542, "added_bug": 291, "added_other": 251, "added_pct": 86, "open_after": 2}, {"rel": "2.1", "days": 98, "prs": 377, "typed": 78, "bugs_cycle": 142, "bugs_per100": 37.7, "regressions": 65, "patch_bugs": 0, "n_patches": 1, "scope_total": 233, "scope_initial": 71, "added": 162, "added_bug": 93, "added_other": 69, "added_pct": 70, "open_after": 7}], "ai_m": ["Jan 25", "Feb 25", "Mar 25", "Apr 25", "May 25", "Jun 25", "Jul 25", "Aug 25", "Sep 25", "Oct 25", "Nov 25", "Dec 25", "Jan 26", "Feb 26", "Mar 26", "Apr 26", "May 26", "Jun 26", "Jul 26", "Aug 26", "Sep 26"], "ai_pct": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.2, 3.8, 0.0, 0.0, 0.0, 6.2, 5.6, 6.0, 3.8, 16.8, 21.0, 19.4], "ai_n": [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 0, 0, 0, 5, 5, 5, 4, 17, 25, 28], "v2q": ["Q1 24", "Q2 24", "Q3 24", "Q4 24", "Q1 25", "Q2 25", "Q3 25", "Q4 25", "Q1 26", "Q2 26", "Q3 26"], "area_legacy": [66, 104, 81, 119, 101, 45, 21, 12, 16, 26, 20], "area_v2": [0, 0, 0, 20, 120, 117, 182, 115, 94, 114, 98], "area_mixed": [11, 15, 9, 16, 35, 31, 43, 30, 49, 85, 79], "area_other": [19, 45, 32, 33, 31, 38, 48, 16, 32, 53, 167], "sb_labels": ["Up to 50", "51\u2013200", "201\u20131,000", "Over 1,000"], "sb_v2": [7.0, 22.6, 50.2, 142.1], "sb_leg": [41.1, 51.6, 97.0, 91.9], "sb_n_v2": [194, 188, 194, 82], "sb_n_leg": [106, 52, 33, 15], "v2sum": {"legacy": {"n": 206, "ttm": 48.2, "p85": 230.2, "ttfr": 20.4, "size": 46, "chg": 7.3}, "v2": {"n": 658, "ttm": 25.2, "p85": 149.9, "ttfr": 2.1, "size": 148, "chg": 4.3}}, "wk_marks": [{"i": 44, "t": "1.9"}, {"i": 77, "t": "2.0"}, {"i": 91, "t": "2.1"}]};
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const qLabel = q => q.replace(/(\d{4})Q(\d)/, (m,y,n)=>`Q${n} ${y.slice(2)}`);
+const CODEBASE={'1.7':'Pre-V2','1.8':'Pre-V2','1.9':'V2 and pre-V2','2.0':'V2, pre-V2 removed','2.1':'V2 only'};
+const RELNOTE={'1.9':'V2 ships','2.0':'pre-V2 removed','2.1':'V2 only'};
+const eraPlugin={id:'eras',
+  beforeDatasetsDraw(chart,args,o){
+    if(!o||(!o.band&&!o.lines))return;
+    const {ctx,chartArea:a,scales:{x}}=chart; const step=x.getPixelForValue(1)-x.getPixelForValue(0);
+    ctx.save();
+    if(o.band!=null){const x2=Math.min(a.right,x.getPixelForValue(o.band)+step/2);ctx.fillStyle=css('--band');ctx.fillRect(a.left,a.top,x2-a.left,a.bottom-a.top);}
+    (o.lines||[]).forEach(l=>{const px=x.getPixelForValue(l.i);ctx.strokeStyle=css('--muted');ctx.lineWidth=1;ctx.setLineDash([3,3]);ctx.beginPath();ctx.moveTo(px,a.top);ctx.lineTo(px,a.bottom);ctx.stroke();});
+    ctx.restore();},
+  afterDatasetsDraw(chart,args,o){
+    if(!o||(!o.band&&!o.lines))return;
+    const {ctx,chartArea:a,scales:{x}}=chart; ctx.save();
+    ctx.font='600 10px "Public Sans", system-ui, sans-serif'; ctx.textBaseline='top';
+    const pill=(t,tx,ty)=>{const w=ctx.measureText(t).width;ctx.fillStyle=css('--surface');ctx.globalAlpha=.85;ctx.fillRect(tx-2,ty-1,w+4,13);ctx.globalAlpha=1;ctx.fillStyle=css('--muted');ctx.fillText(t,tx,ty);};
+    if(o.band!=null) pill('Before V2',a.left+4,a.top+4);
+    (o.lines||[]).forEach((l,k)=>{const px=x.getPixelForValue(l.i);const w=ctx.measureText(l.t).width;const tx=px+4+w>a.right?px-4-w:px+4;pill(l.t,tx,a.top+4+(k%2)*15);});
+    ctx.restore();}};
+const QE={band:D.quarters.indexOf('2024Q3'),lines:[{i:D.quarters.indexOf('2025Q4'),t:'1.9'},{i:D.quarters.indexOf('2026Q2'),t:'2.0'}]};
+const BE={band:2,lines:[{i:7,t:'1.9'},{i:9,t:'2.0'}]};
+const withEra=(opts,e)=>{opts.plugins=Object.assign({},opts.plugins,{eras:e});return opts;};
+const charts = [];
+function base(extra={}){
+  const ink=css('--ink'), muted=css('--muted'), rule=css('--rule');
+  return Object.assign({
+    responsive:true, maintainAspectRatio:false, animation:false,
+    interaction:{mode:'index',intersect:false},
+    plugins:{legend:{display:false},tooltip:{backgroundColor:css('--surface'),titleColor:ink,bodyColor:ink,borderColor:rule,borderWidth:1}},
+    scales:{x:{grid:{display:false},ticks:{color:muted,maxRotation:0,autoSkip:true,autoSkipPadding:8,font:{family:'Public Sans',size:11}},border:{color:rule}},
+            y:{grid:{color:rule},ticks:{color:muted,font:{family:'Public Sans',size:11}},border:{display:false},beginAtZero:true}}
+  }, extra);
+}
+function build(){
+  charts.forEach(c=>c.destroy()); charts.length=0;
+  if(!window.Chart) return;
+  Chart.defaults.font.family='"Public Sans", system-ui, sans-serif';
+  if(!Chart.registry.plugins.get('eras')) Chart.register(eraPlugin);
+  const s5=css('--s5');
+  const s1=css('--s1'), s2=css('--s2'), s3=css('--s3'), s4=css('--s4');
+  const L = D.quarters.map(qLabel);
+  const line=(label,data,color,extra={})=>Object.assign({label,data,borderColor:color,backgroundColor:color,borderWidth:2.5,pointRadius:0,tension:0},extra);
+  const dash=(label,data,color)=>line(label,data,color,{borderDash:[5,4],borderWidth:2});
+  charts.push(new Chart(document.getElementById('cQueue'),{type:'line',data:{labels:B.wk,datasets:[
+    line('Completed, not yet closed',B.wk_done_open,s3,{borderWidth:3}),
+    line('Waiting for release or in QA',B.wk_post,s2),
+    line('In development',B.wk_dev,s1),
+    line('In code review',B.wk_review,s4,{borderWidth:1.5})]},
+    options:base({scales:{...base().scales,x:{...base().scales.x,ticks:{...base().scales.x.ticks,maxTicksLimit:6}}}})}));
+  charts.push(new Chart(document.getElementById('cCycle'),{type:'line',data:{labels:B.bq,datasets:[
+    line('Median days',B.cycle_med,s1),dash('85th percentile days',B.cycle_p85,s2),line('Development and review, median days',B.dev_med,s4,{borderWidth:1.5})]},options:base()}));
+  charts.push(new Chart(document.getElementById('cWait'),{type:'bar',data:{labels:B.bq,datasets:[
+    {label:'Median days, Completed to closed',data:B.done_close_med,backgroundColor:s3}]},options:base()}));
+  const PL=B.pq;
+  charts.push(new Chart(document.getElementById('cAI'),{type:'bar',data:{labels:B.ai_m,datasets:[
+    {label:'Merged PRs with an AI co-author (%)',data:B.ai_pct,backgroundColor:s1}]},
+    options:base({plugins:{...base().plugins,tooltip:{...base().plugins.tooltip,callbacks:{label:c=>`${c.parsed.y}% (${B.ai_n[c.dataIndex]} PRs)`}}},scales:{...base().scales,x:{...base().scales.x,ticks:{...base().scales.x.ticks,maxTicksLimit:7}},y:{...base().scales.y,ticks:{...base().scales.y.ticks,callback:v=>v+'%'}}}})}));
+  charts.push(new Chart(document.getElementById('cReview'),{type:'line',data:{labels:L,datasets:[
+    line('Median hours',B.ttfr_med_h,s1),dash('85th percentile hours',B.ttfr_p85_h,s2)]},options:base()}));
+  charts.push(new Chart(document.getElementById('cArea'),{type:'bar',data:{labels:B.v2q,datasets:[
+    {label:'Code that predates V2',data:B.area_legacy,backgroundColor:s3,stack:'a'},
+    {label:'Events V2 code',data:B.area_v2,backgroundColor:s1,stack:'a'},
+    {label:'Both',data:B.area_mixed,backgroundColor:s2,stack:'a'},
+    {label:'Other',data:B.area_other,backgroundColor:s5,stack:'a'}]},
+    options:base({scales:{x:{...base().scales.x,stacked:true},y:{...base().scales.y,stacked:true}}})}));
+  charts.push(new Chart(document.getElementById('cV2size'),{type:'bar',data:{labels:B.sb_labels,datasets:[
+    {label:'Events V2 code',data:B.sb_v2,backgroundColor:s1,n:B.sb_n_v2},
+    {label:'Code that predates V2',data:B.sb_leg,backgroundColor:s3,n:B.sb_n_leg}]},
+    options:base({plugins:{...base().plugins,tooltip:{...base().plugins.tooltip,callbacks:{label:c=>`${c.dataset.label}: ${c.parsed.y} h (${c.dataset.n[c.dataIndex]} PRs)`}}},scales:{...base().scales,y:{...base().scales.y,title:{display:true,text:'hours',color:css('--muted')}}}})}));
+  charts.push(new Chart(document.getElementById('cFlow'),{data:{labels:L,datasets:[
+    {type:'line',label:'Opened',data:D.opened,borderColor:s4,backgroundColor:s4,borderWidth:2,pointRadius:0,tension:0,order:0},
+    {type:'bar',label:'Closed individually',data:D.closed_single,backgroundColor:s1,stack:'c',order:1},
+    {type:'bar',label:'Release/QA batch',data:D.closed_batch,backgroundColor:s2,stack:'c',order:1},
+    {type:'bar',label:'Clean-up sweep',data:D.closed_sweep,backgroundColor:s3,stack:'c',order:1}]},
+    options:base({scales:{x:{...base().scales.x,stacked:true},y:{...base().scales.y,stacked:true}}})}));
+  charts.push(new Chart(document.getElementById('cBacklog'),{type:'line',data:{labels:L,datasets:[
+    {label:'Open issues',data:D.backlog,borderColor:s1,backgroundColor:s1+'22',fill:true,borderWidth:2.5,pointRadius:0,tension:0}]},options:base()}));
+  charts.push(new Chart(document.getElementById('cAge'),{type:'bar',data:{labels:D.age_labels,datasets:[
+    {label:'Open issues',data:D.age_counts,backgroundColor:D.age_labels.map((l,i)=> i>=3 ? s3 : s1)}]},options:base()}));
+  const toD = a => a.map(v=> v==null?null:+(v/24).toFixed(1));
+  charts.push(new Chart(document.getElementById('cTTM'),{type:'line',data:{labels:L,datasets:[
+    {label:'Median days',data:toD(D.ttm_med_h),borderColor:s1,borderWidth:2.5,pointRadius:0,tension:0},
+    {label:'85th percentile days',data:toD(D.ttm_p85_h),borderColor:s2,borderDash:[5,4],borderWidth:2,pointRadius:0,tension:0}]},options:base()}));
+  charts.push(new Chart(document.getElementById('cPR'),{data:{labels:L,datasets:[
+    {type:'line',label:'PRs per author',data:D.pr_per_author,borderColor:s4,backgroundColor:s4,borderWidth:2,pointRadius:0,tension:0,yAxisID:'y2',order:0},
+    {type:'bar',label:'Merged PRs',data:D.prs_merged,backgroundColor:s2,order:1}]},
+    options:base({scales:{x:base().scales.x,y:base().scales.y,y2:{position:'right',beginAtZero:true,grid:{display:false},border:{display:false},ticks:{color:css('--muted'),font:{size:11}}}}})}));
+  const eraMap={cQueue:{lines:B.wk_marks},cCycle:BE,cWait:BE,cArea:BE,cReview:QE,cFlow:QE,cBacklog:QE,cTTM:QE,cPR:QE};
+  charts.forEach(c=>{const e=eraMap[c.canvas.id]; if(e){c.options.plugins.eras=e; c.update('none');}});
+}
+{const s=B.v2sum, v=s.v2, l=s.legacy; const rows=[['Merged PRs',v.n,l.n],['Median hours to merge',Math.round(v.ttm),Math.round(l.ttm)],['85th percentile hours to merge',Math.round(v.p85),Math.round(l.p85)],['Median hours to first review',Math.round(v.ttfr),Math.round(l.ttfr)],['Median changed lines',v.size,l.size],['PRs with changes requested',Math.round(v.chg)+'%',Math.round(l.chg)+'%']];
+document.getElementById('v2Body').innerHTML=rows.map(r=>`<tr><td>${r[0]}</td><td class="n">${r[1]}</td><td class="n">${r[2]}</td></tr>`).join('');}
+['cCycle','cWait','cArea','cReview','cFlow','cBacklog','cTTM','cPR'].forEach(id=>{const cv=document.getElementById(id); if(!cv) return; const fig=cv.closest('figure'); let key=fig.querySelector('.key'); if(!key){key=document.createElement('ul');key.className='key';cv.parentElement.before(key);} const li=document.createElement('li'); li.innerHTML='<i class="band"></i>Before Events V2'; key.appendChild(li);});
+document.getElementById('sizeBody').innerHTML = B.size_table.map(r=>`<tr><td>${r[0]}</td><td class="n">${r[1]}</td><td class="n">${r[2]}</td><td class="n">${r[3]}</td></tr>`).join('');
+document.getElementById('bugBody').innerHTML = B.rel_bugs.map(r=>`<tr><td>${r.rel}</td><td>${CODEBASE[r.rel]}</td><td class="n">${r.bugs_cycle}</td><td class="n">${Math.round(r.bugs_per100)}</td><td class="n">${r.patch_bugs}</td><td class="n">${r.typed}%</td></tr>`).join('');
+document.getElementById('scopeBody').innerHTML = B.rel_bugs.map(r=>`<tr><td>${r.rel}</td><td class="n">${r.scope_total}</td><td class="n">${r.scope_initial}</td><td class="n">${r.added_bug}</td><td class="n">${r.added_other}</td><td class="n">${r.added_pct}%</td></tr>`).join('');
+document.getElementById('bounce').textContent = B.bq.map((q,i)=>`${q}: ${Math.round(B.qa_bounce[i])}%`).join(', ');
+// releases table
+document.getElementById('relBody').innerHTML = D.releases.map(r=>`<tr><td>${r.minor}${RELNOTE[r.minor]?' ('+RELNOTE[r.minor]+')':''}</td><td class="n">${r.days_since_prev}</td><td class="n">${r.prs_in_cycle}</td><td class="n">${r.patches}</td><td class="n">${r.regressions===''?'–':Math.round(r.regressions)}</td><td class="n">${r.reg_per_100pr===''?'–':r.reg_per_100pr}</td></tr>`).join('');
+build();
+if(document.fonts&&document.fonts.ready) document.fonts.ready.then(build);
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',build);
+new MutationObserver(build).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+</script>
+</body>
+</html>
