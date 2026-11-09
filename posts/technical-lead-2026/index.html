@@ -1,0 +1,666 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Technical Lead, Full Stack TypeScript – OpenCRVS</title>
+    <meta
+      name="description"
+      content="Job description: Technical Lead, Full Stack TypeScript at OpenCRVS. Remote, 11-month contract, starting 11 January 2027."
+    />
+    <meta name="date" content="2026-11-09" />
+    <!-- Published, but left off the opencrvs.dev front page -->
+    <meta name="unlisted" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Technical Lead, Full Stack TypeScript – OpenCRVS" />
+    <meta
+      property="og:description"
+      content="Help governments give every person a legal identity from birth, using open-source software built as a Digital Public Good."
+    />
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #ffffff;
+        --surface: #faf7f5;
+        --ink: #333333;
+        --heading: #373050;
+        --muted: #6b6878;
+        --rule: #ded8d3;
+        --brand: #1470ff;
+        --blue: #1470ff;
+        --teal: #1e7f94;
+        --purple: #785ae6;
+        --green: #30c999;
+        --on-brand: #ffffff;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme='light']) {
+          --bg: #15131c;
+          --surface: #1f1c29;
+          --ink: #e4e1ec;
+          --heading: #f4f2f9;
+          --muted: #a4a0b3;
+          --rule: #353041;
+          --blue: #6aa5ff;
+          --teal: #4fb6cb;
+          --purple: #a690f2;
+          --green: #45d6a8;
+        }
+      }
+      :root[data-theme='dark'] {
+        --bg: #15131c;
+        --surface: #1f1c29;
+        --ink: #e4e1ec;
+        --heading: #f4f2f9;
+        --muted: #a4a0b3;
+        --rule: #353041;
+        --blue: #6aa5ff;
+        --teal: #4fb6cb;
+        --purple: #a690f2;
+        --green: #45d6a8;
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font: 16px/1.6 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+        -webkit-text-size-adjust: 100%;
+      }
+      main {
+        max-width: 760px;
+        margin: 0 auto;
+        padding: 40px 16px 72px;
+      }
+      a {
+        color: var(--blue);
+      }
+      strong {
+        color: var(--heading);
+        font-weight: 700;
+      }
+
+      /* Hero */
+      .hero {
+        background: var(--brand);
+        color: var(--on-brand);
+        border-radius: 14px;
+        padding: 32px;
+      }
+      .hero img {
+        display: block;
+        width: 150px;
+        height: auto;
+        margin-bottom: 28px;
+      }
+      .eyebrow {
+        margin: 0;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      .hero .eyebrow {
+        color: var(--on-brand);
+        opacity: 0.9;
+      }
+      .hero h1 {
+        margin: 6px 0 4px;
+        font-size: clamp(30px, 6vw, 40px);
+        line-height: 1.15;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+      }
+      .hero .facts {
+        margin: 0 0 18px;
+        font-size: 17px;
+      }
+      .hero .facts .f {
+        white-space: nowrap;
+      }
+      .hero .facts .sep {
+        opacity: 0.7;
+        padding: 0 2px;
+      }
+      .hero .tagline {
+        margin: 0;
+        max-width: 34rem;
+      }
+
+      /* Sections */
+      section {
+        margin-top: 44px;
+      }
+      section > .eyebrow {
+        color: var(--blue);
+      }
+      h2 {
+        margin: 4px 0 16px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid var(--rule);
+        color: var(--heading);
+        font-size: 22px;
+        line-height: 1.3;
+        font-weight: 700;
+      }
+      h3 {
+        margin: 24px 0 8px;
+        color: var(--heading);
+        font-size: 17px;
+        font-weight: 700;
+      }
+      h3.c-blue {
+        color: var(--blue);
+      }
+      h3.c-teal {
+        color: var(--teal);
+      }
+      h3.c-purple {
+        color: var(--purple);
+      }
+      p {
+        margin: 0 0 12px;
+      }
+      ul {
+        margin: 0 0 12px;
+        padding-left: 1.25em;
+      }
+      li {
+        margin-bottom: 6px;
+      }
+      li::marker {
+        color: var(--muted);
+      }
+
+      /* At a glance */
+      .glance {
+        display: grid;
+        grid-template-columns: 9.5rem 1fr;
+        margin: 0;
+        background: var(--surface);
+        border-top: 1px solid var(--rule);
+        font-size: 15px;
+      }
+      .glance dt,
+      .glance dd {
+        margin: 0;
+        padding: 10px 14px;
+        border-bottom: 1px solid var(--rule);
+      }
+      .glance dt {
+        color: var(--heading);
+        font-weight: 700;
+      }
+
+      /* Responsibilities */
+      .cards {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+      .card {
+        background: var(--surface);
+        border-radius: 10px;
+        padding: 18px 18px 8px;
+      }
+      .card h3 {
+        margin: 0 0 10px;
+        padding-left: 10px;
+        border-left: 3px solid var(--accent);
+        font-size: 16px;
+        line-height: 1.3;
+      }
+      .card ul {
+        font-size: 14.5px;
+        line-height: 1.55;
+      }
+      .card.c-blue {
+        --accent: var(--blue);
+      }
+      .card.c-teal {
+        --accent: var(--teal);
+      }
+      .card.c-purple {
+        --accent: var(--purple);
+      }
+      .card.c-green {
+        --accent: var(--green);
+      }
+
+      /* Hiring process */
+      .steps {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .steps li {
+        display: grid;
+        grid-template-columns: 40px 1fr;
+        column-gap: 8px;
+        margin: 0;
+        padding: 12px 0;
+        border-bottom: 1px solid var(--rule);
+      }
+      .steps li:last-child {
+        border-bottom: 0;
+      }
+      .steps .n {
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 1.3;
+        text-align: center;
+        color: var(--accent);
+      }
+      .steps .t {
+        display: block;
+        color: var(--heading);
+        font-weight: 700;
+      }
+      .steps .d {
+        display: block;
+        font-size: 15px;
+      }
+
+      /* How to apply */
+      .apply {
+        margin-top: 44px;
+        background: var(--brand);
+        color: var(--on-brand);
+        border-radius: 14px;
+        padding: 28px 30px 22px;
+      }
+      .apply h2 {
+        margin: 0 0 10px;
+        padding: 0;
+        border: 0;
+        color: var(--on-brand);
+        font-size: 24px;
+      }
+      .apply ul {
+        margin-bottom: 18px;
+      }
+      .apply li::marker {
+        color: var(--on-brand);
+      }
+      .apply a {
+        color: var(--on-brand);
+      }
+      .apply .button {
+        display: inline-block;
+        padding: 10px 18px;
+        border-radius: 8px;
+        background: var(--on-brand);
+        color: #1470ff;
+        font-weight: 600;
+        text-decoration: none;
+      }
+      .apply .button:hover,
+      .apply .button:focus-visible {
+        background: #e6efff;
+      }
+
+      footer {
+        margin-top: 48px;
+        padding-top: 12px;
+        border-top: 1px solid var(--rule);
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      @media (max-width: 600px) {
+        main {
+          padding-top: 16px;
+        }
+        .hero,
+        .apply {
+          padding: 24px 20px;
+        }
+        .cards {
+          grid-template-columns: 1fr;
+        }
+        .glance {
+          grid-template-columns: 1fr;
+        }
+        .glance dt {
+          padding-bottom: 0;
+          border-bottom: 0;
+        }
+        .glance dd {
+          padding-top: 2px;
+        }
+      }
+
+      @media print {
+        :root {
+          --bg: #ffffff;
+        }
+        .hero,
+        .apply,
+        .card,
+        .glance {
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+        }
+        section,
+        .card,
+        .steps li {
+          break-inside: avoid;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header class="hero">
+        <img src="opencrvs-logo.png" alt="OpenCRVS" width="150" height="28" />
+        <p class="eyebrow">Job description</p>
+        <h1>Technical Lead</h1>
+        <p class="facts">
+          <span class="f">Full Stack TypeScript</span> <span class="sep">·</span> <span class="f">Remote</span>
+          <span class="sep">·</span> <span class="f">11-month contract</span>
+        </p>
+        <p class="tagline">
+          Help governments give every person a legal identity from birth, using open-source software built as a Digital
+          Public Good.
+        </p>
+      </header>
+
+      <section aria-labelledby="glance">
+        <h2 id="glance">At a glance</h2>
+        <dl class="glance">
+          <dt>Role</dt>
+          <dd>Technical Lead, Full Stack TypeScript</dd>
+          <dt>Contract</dt>
+          <dd>Independent contractor, 11 months with the possibility of extension</dd>
+          <dt>Hours</dt>
+          <dd>Full-time, 5 days per week</dd>
+          <dt>Location</dt>
+          <dd>Fully remote, with at least 4 hours a day overlapping UK and Central European working hours</dd>
+          <dt>Day rate</dt>
+          <dd>Negotiable depending on experience</dd>
+          <dt>Reports to</dt>
+          <dd>Technical Architect / CTO</dd>
+          <dt>Start date</dt>
+          <dd>11<sup>th</sup> January 2027</dd>
+        </dl>
+      </section>
+
+      <section aria-labelledby="about">
+        <p class="eyebrow">Who we are</p>
+        <h2 id="about">About OpenCRVS</h2>
+        <p>
+          Since 2018, we have been building <a href="https://www.opencrvs.org/">OpenCRVS</a>: open-source civil
+          registration and vital statistics (CRVS) software that helps governments record births, deaths and other life
+          events. OpenCRVS is a not-for-profit initiative and is recognised as a
+          <a href="https://www.digitalpublicgoods.net/">Digital Public Good</a>.
+        </p>
+        <p>
+          Without a birth certificate, a child does not exist in the eyes of the law. Around 1 in 4 children under five
+          worldwide are still unregistered, and over 100 countries lack a fully functioning CRVS system. OpenCRVS is
+          designed to change that. It works on mobile, in low-connectivity settings, and is built around the people who
+          use it every day.
+        </p>
+        <p>
+          We currently support projects in the Philippines, Burkina Faso, Uganda, Somalia and the Pacific Islands. Learn
+          more about our <a href="https://digitalx.undp.org/opencrvs_1.html">UN Development Partnership</a>, our
+          <a href="https://documentation.opencrvs.org/">technical documentation</a> and our code on
+          <a href="https://github.com/opencrvs/opencrvs-core">GitHub</a>.
+        </p>
+      </section>
+
+      <section aria-labelledby="role">
+        <p class="eyebrow">Why it matters</p>
+        <h2 id="role">The role</h2>
+        <p>
+          OpenCRVS is critical government infrastructure. It has to be installed, monitored and maintained in close
+          partnership with ministries, their support teams and their developers. That is where you come in.
+        </p>
+        <p>
+          As a Technical Lead, you will be a hands-on engineer and a trusted, client-facing leader. You will configure and
+          deploy OpenCRVS, build new features and integrations with our core team, and help local teams run OpenCRVS
+          confidently themselves.
+        </p>
+        <p>
+          You will join a team of around 10 technical leads &amp; senior developers, part of a 30 strong team of designers,
+          QA testers, business analysts and managers, based across Europe (Paris, London, Helsinki and Lisbon). We will
+          invest in getting you up to speed on OpenCRVS through onboarding and pairing with the core team.
+        </p>
+      </section>
+
+      <section aria-labelledby="do">
+        <p class="eyebrow">Responsibilities</p>
+        <h2 id="do">What you will do</h2>
+        <div class="cards">
+          <div class="card c-blue">
+            <h3>Implement and configure</h3>
+            <ul>
+              <li>
+                Install and configure OpenCRVS to meet each country's birth and death registration requirements, from
+                pilot to national rollout.
+              </li>
+              <li>Translate client requirements into technical designs for configuration, new features and integrations.</li>
+              <li>
+                Integrate OpenCRVS with other government systems (such as national ID and health systems) through our APIs.
+              </li>
+            </ul>
+          </div>
+          <div class="card c-teal">
+            <h3>Run reliable infrastructure</h3>
+            <ul>
+              <li>Set up hosting environments, CI/CD pipelines, monitoring and alerting.</li>
+              <li>Monitor and maintain the health, security, backups and performance of live OpenCRVS instances.</li>
+              <li>Lead level 3 investigation and root cause analysis, and plan safe hotfixes and releases.</li>
+            </ul>
+          </div>
+          <div class="card c-purple">
+            <h3>Build the product</h3>
+            <ul>
+              <li>Develop and review new OpenCRVS Core features alongside the core team.</li>
+              <li>Write well-tested TypeScript, and flag technical debt and architectural risks early.</li>
+              <li>Work with our Product Owner to turn field learning into clear product tickets.</li>
+            </ul>
+          </div>
+          <div class="card c-green">
+            <h3>Lead, train and support</h3>
+            <ul>
+              <li>Be the trusted technical contact for government clients and their support teams.</li>
+              <li>
+                Train and mentor local developers and system integrator partners so they can run OpenCRVS themselves.
+              </li>
+              <li>Guide client teams through applying hotfixes and upgrades safely.</li>
+            </ul>
+          </div>
+        </div>
+
+        <h3>A typical week</h3>
+        <ul>
+          <li>Daily stand-up with the whole team</li>
+          <li>Feature development, bug fixing and pair programming</li>
+          <li>Working directly with client support and development teams</li>
+          <li>Code reviews and architecture discussions for new features and integrations</li>
+          <li>Estimating upcoming work and flagging technical debt</li>
+          <li>Configuring, deploying and testing OpenCRVS installations</li>
+          <li>
+            Occasional international travel to partner countries, typically up to 2 trips per year, one to two weeks each.
+          </li>
+        </ul>
+      </section>
+
+      <section aria-labelledby="bring">
+        <p class="eyebrow">Experience and skills</p>
+        <h2 id="bring">What you will bring</h2>
+
+        <h3>Experience</h3>
+        <ul>
+          <li><strong>5+ years</strong> as a senior developer working in TypeScript, including mentoring other developers</li>
+          <li>Building and running high-availability, high-traffic products used by real customers in production</li>
+          <li>Hands-on DevOps experience: deployments, logging, monitoring, versioning and releases</li>
+          <li>Acting as a technical lead or client-facing technical contact for external stakeholders</li>
+          <li>
+            Working with sensitive personal data, with a good understanding of security and data protection principles
+            (for example GDPR)
+          </li>
+        </ul>
+
+        <h3 class="c-blue">Essential skills</h3>
+        <ul>
+          <li>Expert-level knowledge in <strong>Node.js, React and TypeScript</strong>, writing well-tested code</li>
+          <li>Experience running government or healthcare systems that hold sensitive personal data</li>
+          <li>Strong fundamentals in computer science, data structures and software design</li>
+          <li>AI assisted development for example using Claude Code</li>
+          <li><strong>Kubernetes</strong> and <strong>Docker</strong></li>
+          <li>Continuous integration with <strong>GitHub Actions</strong></li>
+          <li>E2E testing &amp; unit testing</li>
+          <li><strong>PostgreSQL</strong></li>
+          <li>Linux server administration and networking fundamentals</li>
+          <li>
+            Designing and documenting REST APIs, including authentication (for example OAuth 2.0 / OpenID Connect)
+          </li>
+          <li>Agile and Scrum ways of working</li>
+        </ul>
+
+        <h3 class="c-teal">Nice to have</h3>
+        <ul>
+          <li>
+            Integrating with national ID, health or other government systems (for example SSO, data exchange layers, MOSIP
+            or DHIS2)
+          </li>
+          <li>Maintaining on-premise or private cloud infrastructure, including backups and disaster recovery</li>
+          <li>Monitoring for example using ELK stack</li>
+          <li>Data analysis platforms such as Metabase, Power BI</li>
+          <li>Experience working in low- and middle-income countries or the international development sector</li>
+          <li>
+            Working proficiency in other languages such as <strong>French</strong>, <strong>Spanish or Portuguese</strong>.
+          </li>
+        </ul>
+
+        <h3 class="c-purple">How you work</h3>
+        <ul>
+          <li>
+            Excellent written and spoken English. You can explain complex technical choices clearly to ministers,
+            developers and everyone in between
+          </li>
+          <li>Positive and inspiring, with real enthusiasm for code and for mentoring</li>
+          <li>
+            Proactive: you reach for pair programming, refactoring and optimisation to keep the codebase clean and robust
+          </li>
+          <li>Strong analytical, debugging and troubleshooting skills, especially under pressure</li>
+          <li>Curious, empathetic and comfortable in a distributed, international, fully remote team</li>
+        </ul>
+      </section>
+
+      <section aria-labelledby="offer">
+        <h2 id="offer">What we offer</h2>
+        <ul>
+          <li>Work that matters: your code helps people get a legal identity and access to their rights</li>
+          <li>Competitive day rates</li>
+          <li>Fully remote working with flexible hours around our core overlap</li>
+          <li>Travel to partner countries, with travel costs covered under our expenses policy</li>
+          <li>
+            Close collaboration with an experienced, friendly team and with UN agencies, governments and partners
+          </li>
+          <li>Open-source work in public that you can point to for the rest of your career</li>
+        </ul>
+      </section>
+
+      <section aria-labelledby="process">
+        <h2 id="process">Our hiring process</h2>
+        <ol class="steps">
+          <li style="--accent: var(--blue)">
+            <span class="n">1</span>
+            <span>
+              <span class="t">Application review</span>
+              <span class="d">We read every direct application and reply to all candidates.</span>
+            </span>
+          </li>
+          <li style="--accent: var(--teal)">
+            <span class="n">2</span>
+            <span>
+              <span class="t">Introductory call</span>
+              <span class="d">30 minutes to talk about the role, your experience and how we work.</span>
+            </span>
+          </li>
+          <li style="--accent: var(--purple)">
+            <span class="n">3</span>
+            <span>
+              <span class="t">Technical interview</span>
+              <span class="d">
+                A practical session with two of our technical leads, including a pair-programming or system design
+                exercise. No take-home tests.
+              </span>
+            </span>
+          </li>
+          <li style="--accent: var(--green)">
+            <span class="n">4</span>
+            <span>
+              <span class="t">Final conversation</span>
+              <span class="d">Meet our CTO &amp; Technical Architect to talk about client work, leadership and fit.</span>
+            </span>
+          </li>
+          <li style="--accent: var(--blue)">
+            <span class="n">5</span>
+            <span>
+              <span class="t">References and offer</span>
+              <span class="d">Two professional references, then a contract offer.</span>
+            </span>
+          </li>
+        </ol>
+      </section>
+
+      <section class="apply" aria-labelledby="apply">
+        <h2 id="apply">How to apply</h2>
+        <p>
+          Email <a href="mailto:team@opencrvs.org">team@opencrvs.org</a> with the subject line "Technical Lead – [Your
+          name]" and include:
+        </p>
+        <ul>
+          <li>Your CV</li>
+          <li>Your GitHub profile, plus links to any open-source work you are proud of</li>
+          <li>Your day rate expectation and earliest start date</li>
+        </ul>
+        <a class="button" href="mailto:team@opencrvs.org?subject=Technical%20Lead%20%E2%80%93%20%5BYour%20name%5D"
+          >Email team@opencrvs.org</a
+        >
+      </section>
+
+      <section aria-labelledby="know">
+        <h2 id="know">Good to know</h2>
+
+        <h3>Inclusion</h3>
+        <p>
+          We are building software for everyone, and we want our team to reflect that. We welcome applications from people
+          of all backgrounds, identities and experiences, and we especially encourage candidates from the countries and
+          communities we serve.
+        </p>
+
+        <h3>Contract and vetting</h3>
+        <p>
+          This is an independent contractor engagement with OpenCRVS LTD UK (a non-profit business). It is not an
+          employment contract. Because you will work with government systems that hold personal data, the successful
+          candidate will be asked to sign a confidentiality agreement and may need to complete a background check.
+        </p>
+
+        <h3>Your data</h3>
+        <p>
+          We use the information you send us only to assess your application. We keep it for 6 months after the role is
+          filled, then delete it, unless you ask us to keep you in mind for future roles.
+        </p>
+
+        <h3>Recruitment agencies</h3>
+        <p>
+          We kindly ask third-party recruiters and agencies not to contact us about this role. We only consider direct
+          applications from candidates.
+        </p>
+      </section>
+
+      <footer>OpenCRVS · Technical Lead job description</footer>
+    </main>
+  </body>
+</html>
