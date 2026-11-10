@@ -21,6 +21,16 @@ The front page lists pages newest first, using from each page:
 
 Pages are copied as-is, so anything works: hand-written HTML, exported Claude artifacts, notebook exports.
 
+## OpenCRVS brand
+
+`brand/` is published at `/brand/`: the official logo files and `opencrvs.css`, which sets the brand's colours, Poppins and Noto Sans, links, tables, cards and buttons. Link it from a new page:
+
+```html
+<link rel="stylesheet" href="/brand/opencrvs.css" />
+```
+
+Use `opencrvs-logo-primary.svg` on white and `opencrvs-logo-white.svg` on navy. The rules come from the OpenCRVS brand (github.com/opencrvs/opencrvs-brand); ask the design team before changing them.
+
 ## Local preview
 
 ```bash

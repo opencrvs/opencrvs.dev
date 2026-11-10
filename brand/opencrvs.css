@@ -1,0 +1,257 @@
+/*
+ * OpenCRVS brand for opencrvs.dev pages.
+ * Tokens and type scale from the OpenCRVS brand (identity.md). Light ground only:
+ * the brand has no dark theme.
+ *
+ * Link it from a page:
+ *   <link rel="stylesheet" href="/brand/opencrvs.css" />
+ */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&family=Poppins:wght@300;600&display=swap');
+
+:root {
+  color-scheme: light;
+
+  /* Text */
+  --text-primary: #222222;
+  --text-secondary: #525252;
+  --text-tertiary: #6b6b6b;
+  --text-link: #1447b9;
+  --text-highlight: #1470ff;
+  --text-highlight-inverse: #99b7f0;
+  --text-inverse: #ffffff;
+
+  /* Surfaces */
+  --surface-page: #ffffff;
+  --surface-default: #ffffff;
+  --surface-inset: #f4f8fe;
+  --surface-subtle: #f8f8f8;
+  --surface-selected: #f4f8fe;
+  --surface-inverse: #0e225d;
+  --surface-brand: #1470ff;
+
+  /* Borders */
+  --border-default: #e1e1e1;
+  --border-subtle: #f2f2f2;
+  --border-strong: #6b6b6b;
+  --border-emphasis: #222222;
+  --border-brand: #1470ff;
+  --border-focus: #eab308;
+  --border-inverse: rgba(255, 255, 255, 0.24);
+
+  /* Actions */
+  --action-primary: #1447b9;
+  --action-primary-hover: #112b73;
+  --action-primary-pressed: #0e225d;
+
+  /* Charts */
+  --data-primary: #1470ff;
+  --data-compare: #1e7f93;
+  --data-context: #b5b5b5;
+
+  /* Feedback */
+  --feedback-positive-subtle: #effaf5;
+  --feedback-positive-strong: #1c664f;
+  --feedback-negative-subtle: #fdf3f3;
+  --feedback-negative-strong: #8f2a2a;
+
+  /* Type */
+  --font-display: 'Poppins', 'Noto Sans', system-ui, sans-serif;
+  --font-body: 'Noto Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  /* Shape */
+  --radius-card: 12px;
+  --radius-panel: 32px;
+  --column: 760px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--surface-page);
+  color: var(--text-primary);
+  font: 400 16px/1.5 var(--font-body);
+  -webkit-text-size-adjust: 100%;
+}
+
+/* heading/h1–h3: Poppins SemiBold. heading/h4–h5: Noto Sans SemiBold. */
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+h1 {
+  font-size: clamp(28px, 6vw, 36px);
+  line-height: 1.15;
+}
+h2 {
+  font-size: clamp(24px, 5vw, 30px);
+  line-height: 1.3;
+}
+h3 {
+  font-size: clamp(20px, 4.5vw, 24px);
+  line-height: 1.3;
+}
+h4,
+h5 {
+  font-family: var(--font-body);
+  font-weight: 600;
+  line-height: 1.3;
+}
+h4 {
+  font-size: 20px;
+}
+h5 {
+  font-size: 18px;
+}
+
+a {
+  color: var(--text-link);
+  text-underline-offset: 0.15em;
+}
+a:hover {
+  color: var(--action-primary-hover);
+}
+
+/* Focus: yellow inner ring, dark outer ring */
+:focus-visible {
+  outline: 2px solid var(--border-emphasis);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px var(--border-focus);
+}
+
+/* body/xl: intros and lead paragraphs */
+.lede {
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+/* label/eyebrow: sentence case, never upper case */
+.eyebrow {
+  margin: 0;
+  font: 600 14px/1.3 var(--font-body);
+  letter-spacing: 0.01em;
+  color: var(--text-secondary);
+}
+
+/* Site header: the Primary logo, linking home */
+.site-header {
+  max-width: var(--column);
+  margin: 0 auto;
+  padding: 16px 16px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.site-header .logo {
+  display: block;
+  line-height: 0;
+}
+.site-header .logo img {
+  width: 152px;
+  height: auto;
+}
+.site-header .back {
+  font: 500 14px/1.3 var(--font-body);
+}
+
+/* Site footer: a navy band with the White logo */
+.site-footer {
+  margin-top: 72px;
+  background: var(--surface-inverse);
+  color: var(--text-inverse);
+}
+.site-footer .inner {
+  max-width: var(--column);
+  margin: 0 auto;
+  padding: 32px 16px 40px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px 24px;
+  font-size: 14px;
+}
+.site-footer img {
+  width: 152px;
+  height: auto;
+  display: block;
+}
+.site-footer a {
+  color: var(--text-inverse);
+}
+.site-footer a:hover {
+  color: var(--text-highlight-inverse);
+}
+
+/* Card: outline, 12 px corners, no shadow */
+.card {
+  background: var(--surface-default);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-card);
+  padding: 20px;
+}
+
+/* Panel: surface/inset, 32 px corners */
+.panel {
+  background: var(--surface-inset);
+  border-radius: var(--radius-panel);
+  padding: 32px;
+}
+
+/* Callout: blue/50 with a 3 px brand-blue rule on the left. One per page. */
+.callout {
+  background: var(--surface-inset);
+  border-left: 3px solid var(--border-brand);
+  padding: 16px 20px;
+}
+
+/* Button: a pill, label/md, at least 44 px high */
+.button {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 10px 24px;
+  border-radius: 999px;
+  background: var(--action-primary);
+  color: var(--text-inverse);
+  font: 500 14px/1.3 var(--font-body);
+  text-decoration: none;
+}
+.button:hover {
+  background: var(--action-primary-hover);
+  color: var(--text-inverse);
+}
+.button:active {
+  background: var(--action-primary-pressed);
+}
+
+/* Table: header row on surface/subtle, a 1 px line under each cell */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 14px;
+}
+th,
+td {
+  text-align: left;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border-default);
+  vertical-align: top;
+}
+th {
+  background: var(--surface-subtle);
+  font-weight: 600;
+}
+td.n,
+th.n {
+  text-align: right;
+}

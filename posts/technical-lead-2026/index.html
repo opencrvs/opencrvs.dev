@@ -17,153 +17,65 @@
       property="og:description"
       content="Help governments give every person a legal identity from birth, using open-source software built as a Digital Public Good."
     />
-    <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/brand/opencrvs.css" />
     <style>
-      :root {
-        --bg: #ffffff;
-        --surface: #faf7f5;
-        --ink: #333333;
-        --heading: #373050;
-        --muted: #6b6878;
-        --rule: #ded8d3;
-        --brand: #1470ff;
-        --blue: #1470ff;
-        --teal: #1e7f94;
-        --purple: #785ae6;
-        --green: #30c999;
-        --on-brand: #ffffff;
-      }
-      @media (prefers-color-scheme: dark) {
-        :root:not([data-theme='light']) {
-          --bg: #15131c;
-          --surface: #1f1c29;
-          --ink: #e4e1ec;
-          --heading: #f4f2f9;
-          --muted: #a4a0b3;
-          --rule: #353041;
-          --blue: #6aa5ff;
-          --teal: #4fb6cb;
-          --purple: #a690f2;
-          --green: #45d6a8;
-        }
-      }
-      :root[data-theme='dark'] {
-        --bg: #15131c;
-        --surface: #1f1c29;
-        --ink: #e4e1ec;
-        --heading: #f4f2f9;
-        --muted: #a4a0b3;
-        --rule: #353041;
-        --blue: #6aa5ff;
-        --teal: #4fb6cb;
-        --purple: #a690f2;
-        --green: #45d6a8;
-      }
-      *,
-      *::before,
-      *::after {
-        box-sizing: border-box;
-      }
-      body {
-        margin: 0;
-        background: var(--bg);
-        color: var(--ink);
-        font: 16px/1.6 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-        -webkit-text-size-adjust: 100%;
-      }
       main {
-        max-width: 760px;
+        max-width: var(--column);
         margin: 0 auto;
-        padding: 40px 16px 72px;
-      }
-      a {
-        color: var(--blue);
+        padding: 24px 16px 0;
       }
       strong {
-        color: var(--heading);
-        font-weight: 700;
+        font-weight: 600;
       }
 
-      /* Hero */
+      /* Hero: a navy band with the White logo */
       .hero {
-        background: var(--brand);
-        color: var(--on-brand);
-        border-radius: 14px;
-        padding: 32px;
+        background: var(--surface-inverse);
+        color: var(--text-inverse);
+        border-radius: var(--radius-panel);
+        padding: 40px;
       }
       .hero img {
         display: block;
-        width: 150px;
+        width: 168px;
         height: auto;
-        margin-bottom: 28px;
-      }
-      .eyebrow {
-        margin: 0;
-        font-size: 12px;
-        font-weight: 700;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
+        margin: -8px 0 24px -8px;
       }
       .hero .eyebrow {
-        color: var(--on-brand);
-        opacity: 0.9;
+        color: var(--text-highlight-inverse);
       }
       .hero h1 {
-        margin: 6px 0 4px;
-        font-size: clamp(30px, 6vw, 40px);
-        line-height: 1.15;
-        font-weight: 700;
-        letter-spacing: -0.01em;
+        margin: 8px 0 8px;
+        color: var(--text-inverse);
       }
       .hero .facts {
-        margin: 0 0 18px;
-        font-size: 17px;
+        margin: 0 0 20px;
+        font-size: 18px;
       }
       .hero .facts .f {
         white-space: nowrap;
       }
       .hero .facts .sep {
-        opacity: 0.7;
         padding: 0 2px;
+        color: var(--text-highlight-inverse);
       }
       .hero .tagline {
         margin: 0;
         max-width: 34rem;
+        font-size: 18px;
+        line-height: 1.5;
       }
 
       /* Sections */
       section {
-        margin-top: 44px;
-      }
-      section > .eyebrow {
-        color: var(--blue);
+        margin-top: 56px;
       }
       h2 {
         margin: 4px 0 16px;
-        padding-bottom: 8px;
-        border-bottom: 1px solid var(--rule);
-        color: var(--heading);
-        font-size: 22px;
-        line-height: 1.3;
-        font-weight: 700;
       }
       h3 {
-        margin: 24px 0 8px;
-        color: var(--heading);
-        font-size: 17px;
-        font-weight: 700;
-      }
-      h3.c-blue {
-        color: var(--blue);
-      }
-      h3.c-teal {
-        color: var(--teal);
-      }
-      h3.c-purple {
-        color: var(--purple);
+        margin: 32px 0 8px;
       }
       p {
         margin: 0 0 12px;
@@ -176,151 +88,112 @@
         margin-bottom: 6px;
       }
       li::marker {
-        color: var(--muted);
+        color: var(--text-tertiary);
       }
 
-      /* At a glance */
+      /* At a glance: a table, labels on surface/subtle */
       .glance {
         display: grid;
         grid-template-columns: 9.5rem 1fr;
         margin: 0;
-        background: var(--surface);
-        border-top: 1px solid var(--rule);
+        border: 1px solid var(--border-default);
+        border-radius: var(--radius-card);
+        overflow: hidden;
         font-size: 15px;
       }
       .glance dt,
       .glance dd {
         margin: 0;
-        padding: 10px 14px;
-        border-bottom: 1px solid var(--rule);
+        padding: 12px 16px;
+        border-bottom: 1px solid var(--border-default);
       }
       .glance dt {
-        color: var(--heading);
-        font-weight: 700;
+        background: var(--surface-subtle);
+        font-weight: 600;
+      }
+      .glance dt:last-of-type,
+      .glance dd:last-of-type {
+        border-bottom: 0;
       }
 
-      /* Responsibilities */
+      /* Responsibilities: outline cards, one idea each */
       .cards {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 14px;
-      }
-      .card {
-        background: var(--surface);
-        border-radius: 10px;
-        padding: 18px 18px 8px;
+        gap: 16px;
       }
       .card h3 {
-        margin: 0 0 10px;
-        padding-left: 10px;
-        border-left: 3px solid var(--accent);
-        font-size: 16px;
-        line-height: 1.3;
+        margin: 0 0 12px;
+        font: 600 20px/1.3 var(--font-body);
       }
       .card ul {
-        font-size: 14.5px;
-        line-height: 1.55;
-      }
-      .card.c-blue {
-        --accent: var(--blue);
-      }
-      .card.c-teal {
-        --accent: var(--teal);
-      }
-      .card.c-purple {
-        --accent: var(--purple);
-      }
-      .card.c-green {
-        --accent: var(--green);
+        margin: 0;
+        font-size: 14px;
+        line-height: 1.5;
       }
 
-      /* Hiring process */
+      /* Hiring process: Stepper with brand-blue markers */
       .steps {
         list-style: none;
         margin: 0;
         padding: 0;
       }
       .steps li {
+        position: relative;
         display: grid;
         grid-template-columns: 40px 1fr;
-        column-gap: 8px;
+        column-gap: 16px;
         margin: 0;
-        padding: 12px 0;
-        border-bottom: 1px solid var(--rule);
+        padding: 0 0 24px;
       }
-      .steps li:last-child {
-        border-bottom: 0;
+      .steps li:not(:last-child)::before {
+        content: '';
+        position: absolute;
+        left: 19px;
+        top: 40px;
+        bottom: 0;
+        width: 2px;
+        background: var(--border-default);
       }
       .steps .n {
-        font-size: 20px;
-        font-weight: 700;
-        line-height: 1.3;
-        text-align: center;
-        color: var(--accent);
+        width: 40px;
+        height: 40px;
+        border: 2px solid var(--border-brand);
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        font-weight: 600;
+        background: var(--surface-page);
       }
       .steps .t {
         display: block;
-        color: var(--heading);
-        font-weight: 700;
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 1.3;
+        padding-top: 8px;
       }
       .steps .d {
         display: block;
-        font-size: 15px;
+        margin-top: 4px;
+        color: var(--text-secondary);
       }
 
-      /* How to apply */
-      .apply {
-        margin-top: 44px;
-        background: var(--brand);
-        color: var(--on-brand);
-        border-radius: 14px;
-        padding: 28px 30px 22px;
-      }
+      /* How to apply: a Panel with the one action on the page */
       .apply h2 {
-        margin: 0 0 10px;
-        padding: 0;
-        border: 0;
-        color: var(--on-brand);
-        font-size: 24px;
+        margin-top: 0;
       }
       .apply ul {
-        margin-bottom: 18px;
-      }
-      .apply li::marker {
-        color: var(--on-brand);
-      }
-      .apply a {
-        color: var(--on-brand);
-      }
-      .apply .button {
-        display: inline-block;
-        padding: 10px 18px;
-        border-radius: 8px;
-        background: var(--on-brand);
-        color: #1470ff;
-        font-weight: 600;
-        text-decoration: none;
-      }
-      .apply .button:hover,
-      .apply .button:focus-visible {
-        background: #e6efff;
-      }
-
-      footer {
-        margin-top: 48px;
-        padding-top: 12px;
-        border-top: 1px solid var(--rule);
-        color: var(--muted);
-        font-size: 12px;
+        margin-bottom: 24px;
       }
 
       @media (max-width: 600px) {
-        main {
-          padding-top: 16px;
+        .hero {
+          padding: 28px 24px;
+          border-radius: 24px;
         }
-        .hero,
-        .apply {
-          padding: 24px 20px;
+        .panel {
+          padding: 28px 24px;
+          border-radius: 24px;
         }
         .cards {
           grid-template-columns: 1fr;
@@ -329,22 +202,19 @@
           grid-template-columns: 1fr;
         }
         .glance dt {
-          padding-bottom: 0;
+          padding-bottom: 4px;
           border-bottom: 0;
         }
         .glance dd {
-          padding-top: 2px;
+          padding-top: 4px;
         }
       }
 
       @media print {
-        :root {
-          --bg: #ffffff;
-        }
         .hero,
-        .apply,
-        .card,
-        .glance {
+        .panel,
+        .glance,
+        .site-footer {
           -webkit-print-color-adjust: exact;
           print-color-adjust: exact;
         }
@@ -359,7 +229,7 @@
   <body>
     <main>
       <header class="hero">
-        <img src="opencrvs-logo.png" alt="OpenCRVS" width="150" height="28" />
+        <img src="/brand/opencrvs-logo-white.svg" alt="OpenCRVS" width="168" height="54" />
         <p class="eyebrow">Job description</p>
         <h1>Technical Lead</h1>
         <p class="facts">
@@ -438,7 +308,7 @@
         <p class="eyebrow">Responsibilities</p>
         <h2 id="do">What you will do</h2>
         <div class="cards">
-          <div class="card c-blue">
+          <div class="card">
             <h3>Implement and configure</h3>
             <ul>
               <li>
@@ -451,7 +321,7 @@
               </li>
             </ul>
           </div>
-          <div class="card c-teal">
+          <div class="card">
             <h3>Run reliable infrastructure</h3>
             <ul>
               <li>Set up hosting environments, CI/CD pipelines, monitoring and alerting.</li>
@@ -459,7 +329,7 @@
               <li>Lead level 3 investigation and root cause analysis, and plan safe hotfixes and releases.</li>
             </ul>
           </div>
-          <div class="card c-purple">
+          <div class="card">
             <h3>Build the product</h3>
             <ul>
               <li>Develop and review new OpenCRVS Core features alongside the core team.</li>
@@ -467,7 +337,7 @@
               <li>Work with our Product Owner to turn field learning into clear product tickets.</li>
             </ul>
           </div>
-          <div class="card c-green">
+          <div class="card">
             <h3>Lead, train and support</h3>
             <ul>
               <li>Be the trusted technical contact for government clients and their support teams.</li>
@@ -509,7 +379,7 @@
           </li>
         </ul>
 
-        <h3 class="c-blue">Essential skills</h3>
+        <h3>Essential skills</h3>
         <ul>
           <li>Expert-level knowledge in <strong>Node.js, React and TypeScript</strong>, writing well-tested code</li>
           <li>Experience running government or healthcare systems that hold sensitive personal data</li>
@@ -526,7 +396,7 @@
           <li>Agile and Scrum ways of working</li>
         </ul>
 
-        <h3 class="c-teal">Nice to have</h3>
+        <h3>Nice to have</h3>
         <ul>
           <li>
             Integrating with national ID, health or other government systems (for example SSO, data exchange layers, MOSIP
@@ -541,7 +411,7 @@
           </li>
         </ul>
 
-        <h3 class="c-purple">How you work</h3>
+        <h3>How you work</h3>
         <ul>
           <li>
             Excellent written and spoken English. You can explain complex technical choices clearly to ministers,
@@ -573,21 +443,21 @@
       <section aria-labelledby="process">
         <h2 id="process">Our hiring process</h2>
         <ol class="steps">
-          <li style="--accent: var(--blue)">
+          <li>
             <span class="n">1</span>
             <span>
               <span class="t">Application review</span>
               <span class="d">We read every direct application and reply to all candidates.</span>
             </span>
           </li>
-          <li style="--accent: var(--teal)">
+          <li>
             <span class="n">2</span>
             <span>
               <span class="t">Introductory call</span>
               <span class="d">30 minutes to talk about the role, your experience and how we work.</span>
             </span>
           </li>
-          <li style="--accent: var(--purple)">
+          <li>
             <span class="n">3</span>
             <span>
               <span class="t">Technical interview</span>
@@ -597,14 +467,14 @@
               </span>
             </span>
           </li>
-          <li style="--accent: var(--green)">
+          <li>
             <span class="n">4</span>
             <span>
               <span class="t">Final conversation</span>
               <span class="d">Meet our CTO &amp; Technical Architect to talk about client work, leadership and fit.</span>
             </span>
           </li>
-          <li style="--accent: var(--blue)">
+          <li>
             <span class="n">5</span>
             <span>
               <span class="t">References and offer</span>
@@ -614,7 +484,7 @@
         </ol>
       </section>
 
-      <section class="apply" aria-labelledby="apply">
+      <section class="apply panel" aria-labelledby="apply">
         <h2 id="apply">How to apply</h2>
         <p>
           Email <a href="mailto:team@opencrvs.org">team@opencrvs.org</a> with the subject line "Technical Lead – [Your
@@ -660,7 +530,12 @@
         </p>
       </section>
 
-      <footer>OpenCRVS · Technical Lead job description</footer>
     </main>
+    <footer class="site-footer">
+      <div class="inner">
+        <a href="https://www.opencrvs.org/"><img src="/brand/opencrvs-logo-white.svg" alt="OpenCRVS" width="152" height="49" /></a>
+        <span>Technical Lead job description · Civil registration for everyone</span>
+      </div>
+    </footer>
   </body>
 </html>

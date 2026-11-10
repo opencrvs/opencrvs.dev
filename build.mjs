@@ -25,9 +25,10 @@ const SITE_DESCRIPTION = 'Notes, reports and experiments from the OpenCRVS core 
 
 fs.rmSync(OUT, { recursive: true, force: true })
 fs.cpSync(POSTS, OUT, { recursive: true })
-for (const f of ['CNAME', 'favicon.svg']) {
-  if (fs.existsSync(path.join(ROOT, f))) fs.copyFileSync(path.join(ROOT, f), path.join(OUT, f))
-}
+fs.copyFileSync(path.join(ROOT, 'CNAME'), path.join(OUT, 'CNAME'))
+// Shared OpenCRVS brand files (logos, stylesheet), served at /brand/
+fs.cpSync(path.join(ROOT, 'brand'), path.join(OUT, 'brand'), { recursive: true })
+fs.copyFileSync(path.join(ROOT, 'brand', 'opencrvs-marque.svg'), path.join(OUT, 'favicon.svg'))
 
 function findPages() {
   const pages = []

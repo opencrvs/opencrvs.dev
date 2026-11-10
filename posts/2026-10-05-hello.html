@@ -6,20 +6,67 @@
     <title>How this site works</title>
     <meta name="description" content="Drop an HTML file into posts/, push to main, and it shows up here." />
     <meta name="author" content="Riku Rouvila" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/brand/opencrvs.css" />
     <style>
-      body { max-width: 680px; margin: 0 auto; padding: 48px 16px; font: 17px/1.6 system-ui, sans-serif; background: #fff; color: #222; }
-      @media (prefers-color-scheme: dark) { body { background: #141615; color: #ececea; } a { color: #5cc4a8; } }
-      code { font-size: 0.9em; }
+      main {
+        max-width: var(--column);
+        margin: 0 auto;
+        padding: 40px 16px 0;
+        font-size: 18px;
+        line-height: 1.6;
+      }
+      h1 {
+        margin: 0 0 24px;
+      }
+      code {
+        font-size: 0.875em;
+        background: var(--surface-subtle);
+        border: 1px solid var(--border-default);
+        border-radius: 4px;
+        padding: 0 4px;
+      }
+      pre {
+        background: var(--surface-subtle);
+        border: 1px solid var(--border-default);
+        border-radius: var(--radius-card);
+        padding: 16px;
+        overflow-x: auto;
+        font-size: 14px;
+      }
+      pre code {
+        background: none;
+        border: 0;
+        padding: 0;
+      }
+      li {
+        margin-bottom: 8px;
+      }
     </style>
   </head>
   <body>
-    <p><a href="./">← opencrvs.dev</a></p>
-    <h1>How this site works</h1>
-    <p>Every HTML file in <code>posts/</code> is published as-is, and the front page lists them newest first.</p>
-    <ol>
-      <li>Add <code>posts/2026-10-05-my-report.html</code>, or a folder <code>posts/my-report/index.html</code> if it has its own assets.</li>
-      <li>Push to <code>main</code>. GitHub Actions rebuilds the listing and deploys.</li>
-    </ol>
-    <p>The listing uses the page's <code>&lt;title&gt;</code>, <code>&lt;meta name="description"&gt;</code> and <code>&lt;meta name="author"&gt;</code>. Add <code>&lt;meta name="unlisted"&gt;</code> to publish a page without listing it.</p>
+    <div class="site-header">
+      <a class="logo" href="/"><img src="/brand/opencrvs-logo-primary.svg" alt="OpenCRVS" width="152" height="48" /></a>
+      <a class="back" href="/">All pages</a>
+    </div>
+    <main>
+      <h1>How this site works</h1>
+      <p>Every HTML file in <code>posts/</code> is published as-is, and the front page lists them newest first.</p>
+      <ol>
+        <li>Add <code>posts/2026-10-05-my-report.html</code>, or a folder <code>posts/my-report/index.html</code> if it has its own assets.</li>
+        <li>Push to <code>main</code>. GitHub Actions rebuilds the listing and deploys.</li>
+      </ol>
+      <p>The listing uses the page's <code>&lt;title&gt;</code>, <code>&lt;meta name="description"&gt;</code> and <code>&lt;meta name="author"&gt;</code>. Add <code>&lt;meta name="unlisted"&gt;</code> to publish a page without listing it.</p>
+      <h2>Match the OpenCRVS brand</h2>
+      <p>Link the shared stylesheet to get the brand's colours, fonts, links, tables and buttons:</p>
+      <pre><code>&lt;link rel="stylesheet" href="/brand/opencrvs.css" /&gt;</code></pre>
+      <p>The logos are in <code>/brand/</code>: <code>opencrvs-logo-primary.svg</code> on white, <code>opencrvs-logo-white.svg</code> on navy.</p>
+    </main>
+    <footer class="site-footer">
+      <div class="inner">
+        <a href="https://www.opencrvs.org/"><img src="/brand/opencrvs-logo-white.svg" alt="OpenCRVS" width="152" height="49" /></a>
+        <span>Civil registration for everyone</span>
+      </div>
+    </footer>
   </body>
 </html>
