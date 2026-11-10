@@ -28,7 +28,14 @@ fs.cpSync(POSTS, OUT, { recursive: true })
 fs.copyFileSync(path.join(ROOT, 'CNAME'), path.join(OUT, 'CNAME'))
 // Shared OpenCRVS brand files (logos, stylesheet), served at /brand/
 fs.cpSync(path.join(ROOT, 'brand'), path.join(OUT, 'brand'), { recursive: true })
-fs.copyFileSync(path.join(ROOT, 'brand', 'opencrvs-marque.svg'), path.join(OUT, 'favicon.svg'))
+// Favicons from the brand repo, at the paths browsers look for by default
+for (const [from, to] of [
+  ['opencrvs-favicon.svg', 'favicon.svg'],
+  ['opencrvs-favicon.ico', 'favicon.ico'],
+  ['opencrvs-app-icon.png', 'apple-touch-icon.png']
+]) {
+  fs.copyFileSync(path.join(ROOT, 'brand', from), path.join(OUT, to))
+}
 
 function findPages() {
   const pages = []
