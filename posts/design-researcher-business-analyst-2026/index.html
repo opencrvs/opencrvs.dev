@@ -1,0 +1,540 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>We're hiring: Design Researcher / Business Analyst</title>
+    <meta
+      name="description"
+      content="Job description: Design Researcher / Business Analyst, discovery and requirements, at OpenCRVS. Remote consultancy, 11 months, starting 11 January 2027."
+    />
+    <meta name="date" content="2026-11-20" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Design Researcher / Business Analyst – OpenCRVS" />
+    <meta
+      property="og:description"
+      content="Help governments give every person a legal identity from birth, using open-source software built as a Digital Public Good."
+    />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="stylesheet" href="/brand/opencrvs.css" />
+    <style>
+      main {
+        max-width: var(--column);
+        margin: 0 auto;
+        padding: 24px 16px 0;
+      }
+      strong {
+        font-weight: 600;
+      }
+
+      /* Hero: a navy band with the White logo */
+      .hero {
+        background: var(--surface-inverse);
+        color: var(--text-inverse);
+        border-radius: var(--radius-panel);
+        padding: 40px;
+      }
+      .hero img {
+        display: block;
+        width: 168px;
+        height: auto;
+        margin: -8px 0 24px -8px;
+      }
+      .hero .eyebrow {
+        color: var(--text-highlight-inverse);
+      }
+      .hero h1 {
+        margin: 8px 0 8px;
+        color: var(--text-inverse);
+      }
+      .hero .facts {
+        margin: 0 0 20px;
+        font-size: 18px;
+      }
+      .hero .facts .f {
+        white-space: nowrap;
+      }
+      .hero .facts .sep {
+        padding: 0 2px;
+        color: var(--text-highlight-inverse);
+      }
+      .hero .tagline {
+        margin: 0;
+        max-width: 34rem;
+        font-size: 18px;
+        line-height: 1.5;
+      }
+
+      /* Sections */
+      section {
+        margin-top: 56px;
+      }
+      h2 {
+        margin: 4px 0 16px;
+      }
+      h3 {
+        margin: 32px 0 8px;
+      }
+      p {
+        margin: 0 0 12px;
+      }
+      ul {
+        margin: 0 0 12px;
+        padding-left: 1.25em;
+      }
+      li {
+        margin-bottom: 6px;
+      }
+      li::marker {
+        color: var(--text-tertiary);
+      }
+
+      /* At a glance: a table, labels on surface/subtle */
+      .glance {
+        display: grid;
+        grid-template-columns: 9.5rem 1fr;
+        margin: 0;
+        border: 1px solid var(--border-default);
+        border-radius: var(--radius-card);
+        overflow: hidden;
+        font-size: 15px;
+      }
+      .glance dt,
+      .glance dd {
+        margin: 0;
+        padding: 12px 16px;
+        border-bottom: 1px solid var(--border-default);
+      }
+      .glance dt {
+        background: var(--surface-subtle);
+        font-weight: 600;
+      }
+      .glance dt:last-of-type,
+      .glance dd:last-of-type {
+        border-bottom: 0;
+      }
+
+      /* Responsibilities: outline cards, one idea each */
+      .cards {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+      .card h3 {
+        margin: 0 0 12px;
+        font: 600 20px/1.3 var(--font-body);
+      }
+      .card ul {
+        margin: 0;
+        font-size: 14px;
+        line-height: 1.5;
+      }
+
+      /* Small print under a paragraph, such as sources */
+      .sources {
+        margin: -4px 0 16px;
+        font-size: 13px;
+        line-height: 1.5;
+        color: var(--text-secondary);
+      }
+
+      /* Deliverables table */
+      .deliver td.n,
+      .deliver th.n {
+        width: 2rem;
+      }
+
+      /* Hiring process: Stepper with brand-blue markers */
+      .steps {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .steps li {
+        position: relative;
+        display: grid;
+        grid-template-columns: 40px 1fr;
+        column-gap: 16px;
+        margin: 0;
+        padding: 0 0 24px;
+      }
+      .steps li:not(:last-child)::before {
+        content: '';
+        position: absolute;
+        left: 19px;
+        top: 40px;
+        bottom: 0;
+        width: 2px;
+        background: var(--border-default);
+      }
+      .steps .n {
+        width: 40px;
+        height: 40px;
+        border: 2px solid var(--border-brand);
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        font-weight: 600;
+        background: var(--surface-page);
+      }
+      .steps .t {
+        display: block;
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 1.3;
+        padding-top: 8px;
+      }
+      .steps .d {
+        display: block;
+        margin-top: 4px;
+        color: var(--text-secondary);
+      }
+
+      /* How to apply: a Panel with the one action on the page */
+      .apply h2 {
+        margin-top: 0;
+      }
+      .apply ul {
+        margin-bottom: 24px;
+      }
+
+      @media (max-width: 600px) {
+        .hero {
+          padding: 28px 24px;
+          border-radius: 24px;
+        }
+        .panel {
+          padding: 28px 24px;
+          border-radius: 24px;
+        }
+        .cards {
+          grid-template-columns: 1fr;
+        }
+        .glance {
+          grid-template-columns: 1fr;
+        }
+        .glance dt {
+          padding-bottom: 4px;
+          border-bottom: 0;
+        }
+        .glance dd {
+          padding-top: 4px;
+        }
+      }
+
+      @media print {
+        .hero,
+        .panel,
+        .glance,
+        .site-footer {
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+        }
+        section,
+        .card,
+        .steps li {
+          break-inside: avoid;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="site-header">
+      <a class="logo" href="/"><img src="/brand/opencrvs-logo-primary.svg" alt="OpenCRVS" width="152" height="48" /></a>
+      <a class="back" href="/">All pages</a>
+    </div>
+    <main>
+      <header class="hero">
+        <p class="eyebrow">Job description</p>
+        <h1>Design Researcher / Business Analyst</h1>
+        <p class="facts">
+          <span class="f">Discovery and requirements</span> <span class="sep">·</span> <span class="f">Remote</span> <span class="sep">·</span> <span class="f">Consultancy</span>
+        </p>
+        <p class="tagline">
+          Help governments give every person a legal identity from birth, using open-source software built as a Digital
+          Public Good.
+        </p>
+      </header>
+
+      <section aria-labelledby="glance">
+        <h2 id="glance">At a glance</h2>
+        <dl class="glance">
+          <dt>Role</dt>
+          <dd>Design Researcher / Business Analyst</dd>
+          <dt>Contract</dt>
+          <dd>Independent consultant, 11 months with the possibility of extension</dd>
+          <dt>Hours</dt>
+          <dd>Full-time, 5 days per week</dd>
+          <dt>Location</dt>
+          <dd>Fully remote, with at least 4 hours a day overlapping UK and Central European working hours</dd>
+          <dt>Day rate</dt>
+          <dd>Negotiable depending on experience</dd>
+          <dt>Reports to</dt>
+          <dd>Product Owner / Design Lead</dd>
+          <dt>Start date</dt>
+          <dd>11 January 2027</dd>
+        </dl>
+      </section>
+
+      <section aria-labelledby="about">
+        <p class="eyebrow">Who we are</p>
+        <h2 id="about">About OpenCRVS</h2>
+        <p>
+          Since 2018, we have been building <a href="https://www.opencrvs.org/">OpenCRVS</a>: free, open-source software
+          for civil registration and vital statistics (CRVS) that helps governments register births, deaths and other life
+          events. OpenCRVS is a not-for-profit initiative. It is a digital public good, recognised by the
+          <a href="https://www.digitalpublicgoods.net/r/opencrvs">Digital Public Goods Alliance</a>.
+        </p>
+        <p>
+          Without a birth certificate, a child does not exist in the eyes of the law. Around 1 in 4 children under five
+          worldwide are still unregistered, and over 100 countries lack a fully functioning CRVS system. OpenCRVS is built
+          to change that. It works offline and on modest hardware, and it is designed around the people who use it every
+          day.
+        </p>
+        <p class="sources">
+          Sources: UNICEF, <cite>Birth Registration for Every Child by 2030: Are We on Track?</cite>, 2019 (1 in 4 children
+          under five) · World Bank and WHO, <cite>Global Civil Registration and Vital Statistics Scaling Up Investment Plan
+          2015–2024</cite>, 2014 (over 100 countries) · DPG Registry,
+          <a href="https://www.digitalpublicgoods.net/r/opencrvs">digitalpublicgoods.net/r/opencrvs</a>
+        </p>
+        <p>
+          We currently support projects in the Philippines, Burkina Faso, Uganda, Somalia and the Pacific Islands. Learn
+          more about our <a href="https://digitalx.undp.org/opencrvs_1.html">UN Development Partnership</a>, our
+          <a href="https://documentation.opencrvs.org/">technical documentation</a> and our code on
+          <a href="https://github.com/opencrvs/opencrvs-core">GitHub</a>.
+        </p>
+      </section>
+
+      <section aria-labelledby="role">
+        <p class="eyebrow">Why it matters</p>
+        <h2 id="role">The role</h2>
+        <p>
+          Each country's civil registration system is shaped by its own laws, institutions and practice. Every OpenCRVS implementation goes through three stages: discovery, a country requirements specification, and configuration. We learn how vital events are declared, validated, registered and certified in that country, document the requirements against our library of civil registration business rules, then configure OpenCRVS to meet them. What we learn in each country also shapes the core product.
+        </p>
+        <p>
+          As our Design Researcher / Business Analyst, you will lead discovery and requirements gathering for country implementations, and turn what you find into a specification our configuration team can build from.
+        </p>
+        <p>
+          You will work with country Project Managers, our Product Owner, Design Lead, product designers, developers and QA testers, and directly with ministry officials, registrars and registration staff in partner countries. You will be part of a 30-strong team based across Europe (Paris, London, Helsinki and Lisbon).
+        </p>
+      </section>
+
+      <section aria-labelledby="do">
+        <p class="eyebrow">Responsibilities</p>
+        <h2 id="do">What you will do</h2>
+        <div class="cards">
+          <div class="card">
+            <h3>Plan and run discovery</h3>
+            <ul>
+              <li>Plan discovery for each country: research questions, stakeholder map, sampling, screeners, interview and field guides, and a schedule agreed with the country team.</li>
+              <li>Do field research with the people who declare and register vital events, including in remote and low-connectivity areas.</li>
+              <li>Plan, facilitate and document requirements workshops and interviews with senior officials, registrars and partner organisations.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Understand the law and the process</h3>
+            <ul>
+              <li>Review civil registration legislation, regulations and policy, plus existing forms, registers and certificates.</li>
+              <li>Map the current process for each vital event in scope: actors, offices, steps, documents, data flows, fees and time limits.</li>
+              <li>Agree the target process in OpenCRVS with the country.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Specify what we build</h3>
+            <ul>
+              <li>Write the country requirements specification against our business rule library: forms, workflows, user roles and permissions, certificates, notifications and reporting.</li>
+              <li>Find gaps against OpenCRVS core and work with the Product Owner to turn them into backlog tickets with acceptance criteria.</li>
+              <li>Use and build on our internal AI tooling to gather requirements and write specifications.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Test, share and improve</h3>
+            <ul>
+              <li>Run usability testing with end users, and support user acceptance testing with QA testers and country stakeholders.</li>
+              <li>Turn research into insights, personas and journey maps, and present them in writing, visuals and workshops.</li>
+              <li>Improve the templates, questions and methods we use for discovery and requirements across countries.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section aria-labelledby="deliver">
+        <p class="eyebrow">Outputs</p>
+        <h2 id="deliver">What you will deliver</h2>
+        <p>For each country engagement:</p>
+        <table class="deliver">
+          <thead>
+            <tr><th class="n">#</th><th>Deliverable</th><th>Details</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="n">1</td><td>Discovery plan</td><td>With stakeholder map, research questions and field guides</td></tr>
+            <tr><td class="n">2</td><td>Requirements workshops</td><td>With country stakeholders, plus interview records</td></tr>
+            <tr><td class="n">3</td><td>Legislative and process review</td><td>With current-state process maps for each vital event in scope</td></tr>
+            <tr><td class="n">4</td><td>Country requirements specification</td><td>Signed off by the country</td></tr>
+            <tr><td class="n">5</td><td>Country configuration specification</td><td>Signed off by the country</td></tr>
+            <tr><td class="n">6</td><td>To-be business process maps</td><td>For key users and journeys</td></tr>
+            <tr><td class="n">7</td><td>Gap analysis against OpenCRVS core</td><td>With backlog tickets and acceptance criteria</td></tr>
+            <tr><td class="n">8</td><td>Usability testing</td><td>Test plans and findings reports</td></tr>
+            <tr><td class="n">9</td><td>User acceptance testing sign-off</td><td>Against the agreed requirements</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section aria-labelledby="week">
+        <h2 id="week">A typical week</h2>
+        <ul>
+          <li>Daily stand-up, estimation and retrospectives with the Scrum team</li>
+          <li>Interviews, workshops or working sessions with country stakeholders</li>
+          <li>Synthesising research into insights, process maps and journey maps</li>
+          <li>Writing and refining requirements, specifications and backlog tickets</li>
+          <li>Working through configuration questions with designers and developers</li>
+          <li>Usability or acceptance testing sessions</li>
+          <li>International travel to partner countries for workshops and field research</li>
+        </ul>
+      </section>
+
+      <section aria-labelledby="bring">
+        <p class="eyebrow">Experience and skills</p>
+        <h2 id="bring">What you will bring</h2>
+
+        <h3>Experience</h3>
+        <ul>
+          <li><strong>3+ years</strong> in design research, business analysis, or a mix of both, on digital products or public services</li>
+          <li>Running qualitative research end to end: scoping, recruitment, fieldwork, interviews and synthesis</li>
+          <li>Gathering and documenting requirements for complex systems: process mapping (for example BPMN), business rules, user stories and acceptance criteria</li>
+          <li>Working with government institutions, and turning legislation or regulation into system requirements</li>
+          <li>Facilitating workshops with both senior officials and frontline staff</li>
+        </ul>
+
+        <h3>Essential skills</h3>
+        <ul>
+          <li>Qualitative research methods, with working knowledge of surveys and quantitative analysis</li>
+          <li>Writing specifications that developers can build from and testers can test against</li>
+          <li>Turning complex findings into clear insights people can make decisions on</li>
+          <li>Research ethics and data protection, including informed consent and handling personal data</li>
+          <li><strong>Figma/FigJam</strong> or <strong>Miro</strong>, and <strong>Jira</strong> or similar</li>
+        </ul>
+
+        <h3>Nice to have</h3>
+        <ul>
+          <li>Experience in civil registration, legal identity, health information systems or other government registries</li>
+          <li>Research in low- and middle-income countries or the international development sector</li>
+          <li>Configuring form-based or low-code platforms (for example ODK, KoboToolbox or DHIS2)</li>
+          <li>Using AI tools for research synthesis and requirements documentation</li>
+          <li>Working proficiency in other languages such as <strong>French</strong>, <strong>Spanish</strong> or <strong>Portuguese</strong>, or other languages spoken in our partner countries</li>
+        </ul>
+
+        <h3>How you work</h3>
+        <ul>
+          <li><strong>Clear communicator.</strong> Excellent written and spoken English, in reports, visuals and the room</li>
+          <li><strong>Rigorous and practical.</strong> You balance research rigour with delivery pace</li>
+          <li><strong>Self-directed.</strong> You are comfortable with ambiguity and know how to make progress in it</li>
+          <li><strong>Respectful of people and cultures.</strong> You listen carefully to frontline staff and communities, and work confidently with senior officials</li>
+          <li><strong>Comfortable remote.</strong> You are organised and collaborative in a distributed, international, fully remote team</li>
+        </ul>
+      </section>
+
+      <section aria-labelledby="offer">
+        <h2 id="offer">What we offer</h2>
+        <ul>
+          <li>Work that matters: your research helps people get a legal identity and access to their rights</li>
+          <li>Research that directly shapes both national systems and a global open-source product</li>
+          <li>Competitive day rates</li>
+          <li>Fully remote working with flexible hours around our core overlap</li>
+          <li>Travel to partner countries, with travel costs covered under our expenses policy</li>
+          <li>Close collaboration with an experienced, friendly team and with UN agencies, governments and partners</li>
+        </ul>
+      </section>
+
+      <section aria-labelledby="process">
+        <h2 id="process">Our hiring process</h2>
+        <ol class="steps">
+          <li>
+            <span class="n">1</span>
+            <span>
+              <span class="t">Application review</span>
+              <span class="d">We read every direct application and reply to all candidates.</span>
+            </span>
+          </li>
+          <li>
+            <span class="n">2</span>
+            <span>
+              <span class="t">Introductory call</span>
+              <span class="d">30 minutes to talk about the role, your experience and how we work.</span>
+            </span>
+          </li>
+          <li>
+            <span class="n">3</span>
+            <span>
+              <span class="t">Practical interview</span>
+              <span class="d">A session with our Design Lead and Product Owner. You will walk us through one of your work examples, then we will work through a short requirements scenario together. No take-home tests.</span>
+            </span>
+          </li>
+          <li>
+            <span class="n">4</span>
+            <span>
+              <span class="t">Final conversation</span>
+              <span class="d">Meet our CTO and Technical Architect to talk about country engagements, ways of working and fit.</span>
+            </span>
+          </li>
+          <li>
+            <span class="n">5</span>
+            <span>
+              <span class="t">References and offer</span>
+              <span class="d">Two professional references, then a contract offer.</span>
+            </span>
+          </li>
+        </ol>
+      </section>
+
+      <section class="apply panel" aria-labelledby="apply">
+        <h2 id="apply">How to apply</h2>
+        <p>
+          Email <a href="mailto:team@opencrvs.org">team@opencrvs.org</a> with the subject line "Design Researcher / Business Analyst – [Your name]" and include:
+        </p>
+        <ul>
+          <li>Your CV</li>
+          <li>Two examples of your work, such as a research report or requirements specification (redacted where needed)</li>
+          <li>Your day rate expectation and earliest start date</li>
+        </ul>
+        <a class="button" href="mailto:team@opencrvs.org?subject=Design%20Researcher%20/%20Business%20Analyst%20%E2%80%93%20%5BYour%20name%5D">Email team@opencrvs.org</a>
+      </section>
+
+      <section aria-labelledby="know">
+        <h2 id="know">Good to know</h2>
+
+        <h3>Inclusion</h3>
+        <p>
+          We are building software for everyone, and we want our team to reflect that. We welcome applications from people
+          of all backgrounds, identities and experiences, and we especially encourage candidates from the countries and
+          communities we serve.
+        </p>
+
+        <h3>Contract and vetting</h3>
+        <p>
+          This is an independent consultancy engagement with OpenCRVS LTD UK (a non-profit business). It is not an employment contract. Because you will work with government systems and research participants' personal data, the successful candidate will be asked to sign a confidentiality agreement and may need to complete a background check.
+        </p>
+
+        <h3>Your data</h3>
+        <p>
+          We use the information you send us only to assess your application. We keep it for 6 months after the role is
+          filled, then delete it, unless you ask us to keep you in mind for future roles.
+        </p>
+
+        <h3>Recruitment agencies</h3>
+        <p>
+          We kindly ask third-party recruiters and agencies not to contact us about this role. We only consider direct
+          applications from candidates.
+        </p>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <div class="inner">
+        <a href="https://www.opencrvs.org/"><img src="/brand/opencrvs-logo-white.svg" alt="OpenCRVS" width="152" height="49" /></a>
+        <span>Design Researcher / Business Analyst job description · Civil registration for everyone</span>
+      </div>
+    </footer>
+  </body>
+</html>
