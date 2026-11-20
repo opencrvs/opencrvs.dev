@@ -115,7 +115,7 @@ const formatDate = (d) =>
   new Date(`${d}T00:00:00Z`).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' })
 
 const item = (p) => `        <li>
-          <a href="${escape(p.href)}">
+          <a href="/${escape(p.href)}">
             <time datetime="${p.date}">${formatDate(p.date)}</time>
             <span class="title">${escape(p.title)}</span>
             ${p.description ? `<span class="desc">${escape(p.description)}</span>` : ''}
