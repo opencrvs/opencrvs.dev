@@ -12,6 +12,7 @@
 //   <meta name="date" content="YYYY-MM-DD"> or a YYYY-MM-DD- file name prefix
 //                                    → date (falls back to first git commit, then mtime)
 //   <meta name="unlisted">           → page is published but left out of the index
+//   <meta name="category" content="job"> → listed under Open positions instead of Posts
 
 import { execFileSync } from 'node:child_process'
 import fs from 'node:fs'
@@ -100,7 +101,8 @@ function describe(page) {
     description: meta(html, 'description'),
     author: meta(html, 'author') ?? commitAuthor ?? null,
     date,
-    unlisted: meta(html, 'unlisted') !== null
+    unlisted: meta(html, 'unlisted') !== null,
+    category: meta(html, 'category')?.toLowerCase() ?? 'post'
   }
 }
 
@@ -112,25 +114,42 @@ const posts = findPages()
 const formatDate = (d) =>
   new Date(`${d}T00:00:00Z`).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' })
 
-const items = posts
-  .map(
-    (p) => `      <li>
-        <a href="${escape(p.href)}">
-          <time datetime="${p.date}">${formatDate(p.date)}</time>
-          <span class="title">${escape(p.title)}</span>
-          ${p.description ? `<span class="desc">${escape(p.description)}</span>` : ''}
-          ${p.author ? `<span class="author">${escape(p.author)}</span>` : ''}
-        </a>
-      </li>`
-  )
-  .join('\n')
+const item = (p) => `        <li>
+          <a href="${escape(p.href)}">
+            <time datetime="${p.date}">${formatDate(p.date)}</time>
+            <span class="title">${escape(p.title)}</span>
+            ${p.description ? `<span class="desc">${escape(p.description)}</span>` : ''}
+            ${p.author ? `<span class="author">${escape(p.author)}</span>` : ''}
+          </a>
+        </li>`
+
+const plural = (n, one, many) => `${n} ${n === 1 ? one : many}`
+
+// Open positions first, then everything else as posts. A section with nothing in it is left out.
+const jobs = posts
+  .filter((p) => p.category === 'job')
+  // The section heading already says we're hiring
+  .map((p) => ({ ...p, title: p.title.replace(/^we['’]re hiring:\s*/i, ''), author: null }))
+const notes = posts.filter((p) => p.category !== 'job')
+
+const section = (id, heading, count, list) => `      <section aria-labelledby="${id}">
+        <h2 id="${id}">${heading}</h2>
+        <p class="eyebrow count">${count}</p>
+        <ul>
+${list.map(item).join('\n')}
+        </ul>
+      </section>`
+
+const sections = [
+  jobs.length && section('positions', 'Open positions', plural(jobs.length, 'role', 'roles'), jobs),
+  notes.length && section('posts', 'Posts', plural(notes.length, 'post', 'posts'), notes)
+].filter(Boolean)
 
 const index = fs
   .readFileSync(path.join(ROOT, 'index.template.html'), 'utf8')
   .replaceAll('{{title}}', escape(SITE_TITLE))
   .replaceAll('{{description}}', escape(SITE_DESCRIPTION))
-  .replace('{{posts}}', posts.length ? items : '      <li class="empty">Nothing here yet.</li>')
-  .replace('{{count}}', `${posts.length} ${posts.length === 1 ? 'page' : 'pages'}`)
+  .replace('{{sections}}', sections.length ? sections.join('\n\n') : '      <p class="empty">Nothing here yet.</p>')
 
 fs.writeFileSync(path.join(OUT, 'index.html'), index)
 console.log(`Built ${posts.length} listed page(s) into _site/`)
