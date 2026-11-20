@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{{title}}</title>
-    <meta name="description" content="{{description}}" />
+    <meta name="description" content="{{lede}}" />
     <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -24,14 +24,8 @@
       header .lede {
         margin: 0;
       }
-      section + section {
-        margin-top: 56px;
-      }
-      section h2 {
-        margin: 0 0 4px;
-      }
       .count {
-        margin-bottom: 12px;
+        margin-bottom: 8px;
       }
       ul {
         list-style: none;
@@ -98,14 +92,18 @@
   <body>
     <div class="site-header">
       <a class="logo" href="/"><img src="/brand/opencrvs-logo-primary.svg" alt="OpenCRVS" width="152" height="48" /></a>
+      {{nav}}
     </div>
     <main>
       <header>
-        <p class="eyebrow">{{title}}</p>
-        <h1>Notes from the core team</h1>
-        <p class="lede">{{description}}</p>
+        <p class="eyebrow">{{eyebrow}}</p>
+        <h1>{{heading}}</h1>
+        <p class="lede">{{lede}}</p>
       </header>
-{{sections}}
+      <p class="eyebrow count">{{count}}</p>
+      <ul>
+{{items}}
+      </ul>
     </main>
     <footer class="site-footer">
       <div class="inner">

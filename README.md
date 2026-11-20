@@ -18,9 +18,9 @@ The front page lists pages newest first, using from each page:
 | `<meta name="author" content="…">` | Author (falls back to the git author) |
 | `<meta name="date" content="YYYY-MM-DD">` or a `YYYY-MM-DD-` file name prefix | Date (falls back to the first commit date) |
 | `<meta name="unlisted">` | Published, but left off the front page |
-| `<meta name="category" content="job">` | Listed under **Open positions** instead of **Posts** |
+| `<meta name="category" content="job">` | Listed on **Open positions** (`/jobs/`) instead of the front page |
 
-The front page has two sections: **Open positions** (pages tagged `category` `job`) and **Posts** (everything else). A "We're hiring:" prefix is dropped from job titles there, since the heading already says it. When a role is filled, remove its `category` tag or mark the page `unlisted`.
+Job descriptions get their own listing at `/jobs/`, linked from the front page header as "Open positions (n)". A "We're hiring:" prefix is dropped from job titles there, since the heading already says it. When a role is filled, remove its `category` tag or mark the page `unlisted`. `/jobs/` is generated, so don't add a `posts/jobs/` folder.
 
 Pages are copied as-is, so anything works: hand-written HTML, exported Claude artifacts, notebook exports.
 

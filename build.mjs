@@ -12,7 +12,7 @@
 //   <meta name="date" content="YYYY-MM-DD"> or a YYYY-MM-DD- file name prefix
 //                                    → date (falls back to first git commit, then mtime)
 //   <meta name="unlisted">           → page is published but left out of the index
-//   <meta name="category" content="job"> → listed under Open positions instead of Posts
+//   <meta name="category" content="job"> → listed on /jobs/ instead of the front page
 
 import { execFileSync } from 'node:child_process'
 import fs from 'node:fs'
@@ -125,31 +125,51 @@ const item = (p) => `        <li>
 
 const plural = (n, one, many) => `${n} ${n === 1 ? one : many}`
 
-// Open positions first, then everything else as posts. A section with nothing in it is left out.
 const jobs = posts
   .filter((p) => p.category === 'job')
-  // The section heading already says we're hiring
+  // The page heading already says these are open positions
   .map((p) => ({ ...p, title: p.title.replace(/^we['’]re hiring:\s*/i, ''), author: null }))
 const notes = posts.filter((p) => p.category !== 'job')
 
-const section = (id, heading, count, list) => `      <section aria-labelledby="${id}">
-        <h2 id="${id}">${heading}</h2>
-        <p class="eyebrow count">${count}</p>
-        <ul>
-${list.map(item).join('\n')}
-        </ul>
-      </section>`
+const template = fs.readFileSync(path.join(ROOT, 'index.template.html'), 'utf8')
 
-const sections = [
-  jobs.length && section('positions', 'Open positions', plural(jobs.length, 'role', 'roles'), jobs),
-  notes.length && section('posts', 'Posts', plural(notes.length, 'post', 'posts'), notes)
-].filter(Boolean)
+// Writes one listing page from index.template.html. `root` is the path back to the site root.
+function listing(file, { title, eyebrow, heading, lede, nav, count, list, empty }) {
+  const html = template
+    .replaceAll('{{title}}', escape(title))
+    .replaceAll('{{eyebrow}}', escape(eyebrow))
+    .replaceAll('{{heading}}', escape(heading))
+    .replaceAll('{{lede}}', lede)
+    .replace('{{nav}}', nav)
+    .replace('{{count}}', count)
+    .replace('{{items}}', list.length ? list.map(item).join('\n') : `        <li class="empty">${empty}</li>`)
+  fs.mkdirSync(path.dirname(file), { recursive: true })
+  fs.writeFileSync(file, html)
+}
 
-const index = fs
-  .readFileSync(path.join(ROOT, 'index.template.html'), 'utf8')
-  .replaceAll('{{title}}', escape(SITE_TITLE))
-  .replaceAll('{{description}}', escape(SITE_DESCRIPTION))
-  .replace('{{sections}}', sections.length ? sections.join('\n\n') : '      <p class="empty">Nothing here yet.</p>')
+// Front page: posts. Open positions get their own page at /jobs/, linked from the header.
+if (fs.existsSync(path.join(POSTS, 'jobs'))) throw new Error('posts/jobs/ would clash with the generated /jobs/ page')
 
-fs.writeFileSync(path.join(OUT, 'index.html'), index)
-console.log(`Built ${posts.length} listed page(s) into _site/`)
+listing(path.join(OUT, 'index.html'), {
+  title: SITE_TITLE,
+  eyebrow: SITE_TITLE,
+  heading: 'Notes from the core team',
+  lede: escape(SITE_DESCRIPTION),
+  nav: `<a class="back" href="/jobs/">Open positions${jobs.length ? ` (${jobs.length})` : ''}</a>`,
+  count: plural(notes.length, 'post', 'posts'),
+  list: notes,
+  empty: 'Nothing here yet.'
+})
+
+listing(path.join(OUT, 'jobs', 'index.html'), {
+  title: `Open positions – ${SITE_TITLE}`,
+  eyebrow: 'Join the team',
+  heading: 'Open positions',
+  lede: 'Help governments give every person a legal identity from birth. All roles are remote, working with the OpenCRVS core team.',
+  nav: '<a class="back" href="/">All posts</a>',
+  count: plural(jobs.length, 'role', 'roles'),
+  list: jobs,
+  empty: 'No open positions right now.'
+})
+
+console.log(`Built ${notes.length} post(s) and ${jobs.length} open position(s) into _site/`)
